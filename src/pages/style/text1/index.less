@@ -1,0 +1,35 @@
+.out {
+  width: 100%;
+  height: 70vh;
+  position: relative;
+}
+.inner {
+  width: 400px;
+  height: 200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -200px;
+  border-radius: 8px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  overflow: hidden;
+  z-index: 1;
+  box-sizing: border-box;
+}
+.inner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  filter: blur(20px);
+  z-index: -1;
+}
+.out, .inner::before {
+  background-image: url('../../../assets/yay.jpg');
+  background-position: center top;
+  background-size: 100% 100%;
+  background-attachment: fixed;
+}

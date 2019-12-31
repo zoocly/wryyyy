@@ -1,0 +1,33 @@
+.box {
+  display: flex;
+  flex-wrap: wrap;
+  width: 302px;
+  height: 302px;
+  border: 1px solid black;
+  position: relative;
+  .item {
+    border: 1px solid black;
+    box-sizing: border-box;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .start {
+    background: pink;
+  }
+  .start:hover {
+    cursor:pointer
+  }
+  // 滑块
+  .spin {
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background-color: rgba(0,0,0,.2);
+  }
+}
