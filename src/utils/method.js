@@ -1,3 +1,4 @@
+import _trim from 'lodash/trim';
 export function treeToList(data=[]) {
   let resData=[];
   for(let obj of data){
@@ -68,6 +69,30 @@ export const toChineseNum = (num) => {
     finalStr = up8Wwei(str);
   }
 
-  finalStr = finalStr.replace(/零[零十百千]+/g, '零').replace(/零+$/g, '').replace(/零万/g, '万').replace(/一十/g, '十');
+  finalStr = finalStr.replace(/零[零十百千]+/g, '零')
+                      .replace(/零+$/g, '')
+                      .replace(/零万/g, '万')
+                      .replace(/一十/g, '十');
   return finalStr.trim();
+};
+
+export const commafy = (num) => {
+  if(typeof num !== 'number'){
+    return num;
+  }
+  let arr = num.toString().split('.');
+  let front = '';
+  let back = '';
+  if(num < 0){
+    front = '0';
+    back = arr.length === 2 ? arr[1] : '0';
+  }else {
+    back = arr.length === 2 ? arr[1] : '0';
+    let _arr = arr[0].split('');
+    for(let i = _arr.length - 3; i >0; i=i-3){
+      _arr.splice(i,0,',');
+    }
+    front = _arr.join('');
+  }
+  return _trim(`${front}${back === '0' ? '': `.${back}`}`)
 };
