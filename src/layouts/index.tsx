@@ -2,28 +2,28 @@ import React from 'react';
 import { Layout, Breadcrumb } from 'antd';
 import Menu from 'src/components/Menu';
 import style from './index.css';
-import L2Dwidget from '../../public/L2Dwidget.min.js'
+// import L2Dwidget from '../../public/L2Dwidget.min.js'
 const { Header, Content, Footer, Sider } = Layout;
-function initL2Dwidget() {
-  console.log(L2Dwidget,'sss')
-  // L2Dwidget.init({
-  //     dialog: {
-  //       // 开启对话框
-  //       enable: true,
-  //       script: {
-  //         // 当触摸到角色身体
-  //         'tap body': '哎呀！别碰我！',
-  //         // 当触摸到角色头部
-  //         'tap face': '人家是在认真写博客哦--前端妹子',
-  //       }
-  //     },
-  //     display: {
-  //       position: 'right'
-  //     },
-  //     "model": { "jsonPath": "live2d-widget-model-z16/assets/z16.model.json" },
-  //     "mobile": { "show": true, scale: 0.5 },
-  //   });
-}
+// function initL2Dwidget() {
+//   console.log(L2Dwidget,'sss')
+//   // L2Dwidget.init({
+//   //     dialog: {
+//   //       // 开启对话框
+//   //       enable: true,
+//   //       script: {
+//   //         // 当触摸到角色身体
+//   //         'tap body': '哎呀！别碰我！',
+//   //         // 当触摸到角色头部
+//   //         'tap face': '人家是在认真写博客哦--前端妹子',
+//   //       }
+//   //     },
+//   //     display: {
+//   //       position: 'right'
+//   //     },
+//   //     "model": { "jsonPath": "live2d-widget-model-z16/assets/z16.model.json" },
+//   //     "mobile": { "show": true, scale: 0.5 },
+//   //   });
+// }
 class BasicLayout extends React.Component<any, any> {
   constructor(props:any){
     super(props);
@@ -50,14 +50,14 @@ class BasicLayout extends React.Component<any, any> {
     const { children } = this.props;
     return (
       <Layout style={{ minHeight: '100vh' }}>
-        <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
+        <Sider collapsible={true} collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
           <div className="logo" />
           <Menu/>
         </Sider>
         <Layout className={style.content}>
           <Content style={{ margin: '16px 16px',height:'100%'}}>
             <div style={{ padding: 24, background: '#fff'}}>
-              { children }
+              {children}
             </div>
           </Content>
         </Layout>
