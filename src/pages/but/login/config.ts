@@ -10,9 +10,9 @@ export function createXHR() {
   xhr.onreadystatechange = function (){
     if (xhr.readyState === 4 ) {
       if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304 ) {
-        console.log(xhr,'xhr');
+        // console.log(xhr,'xhr');
         // 输出数据。responseText是作为响应主体被返回的文本
-        console.log(JSON.parse(xhr.responseText),'xhr.responseText')
+        // console.log(JSON.parse(xhr.responseText),'xhr.responseText')
       } else {
         alert('请求不成功')
       }
@@ -40,7 +40,7 @@ export function createPostXHR() {
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 ) {
       if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304 ) {
-        console.log(xhr.responseText,'xhr.responseText')
+        // console.log(xhr.responseText,'xhr.responseText')
       } else {
         alert('请求不成功')
       }

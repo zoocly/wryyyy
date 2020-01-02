@@ -1,8 +1,9 @@
 // @ts-ignore
 import request from 'src/utils/request';
-// export function addMemInfo(params:any) {
-//   return request(`/api/users?${qs.stringify(params)}`);
-// }
+import qs from 'qs';
+export function awsl(params:any) {
+  return request(`/api/awsl?${qs.stringify(params)}`);
+}
 
 export function getMenu(params:any) {
   return request(`/api/getMenu`,{
