@@ -4,7 +4,12 @@ extends:
   - tslint-eslint-rules
 rules:
   eofline: true
-  no-console: true
+  no-console: false
   no-construct: true
   no-debugger: true
   no-reference: true
+  jsx-no-lambda: false
+  jsx-no-multiline-js: false
+  jsx-boolean-value: false
+  jsx-curly-spacing: false
+  jsx-alignment: false

@@ -1,6 +1,7 @@
 import React from 'react';
 import {createPostXHR,createXHR} from './config';
 import {login} from 'src/pages/services/login';
+import _get from 'lodash/get';
 export default class index extends React.Component {
   constructor(props:any) {
     super(props);
@@ -18,9 +19,10 @@ export default class index extends React.Component {
     const res = await login({});
   };
   render(): React.ReactNode {
+    const {id = ''} = _get(window,'g_history.location.query',{});
     return (
       <div>
-        模拟发请求
+        模拟发请求{id}
         <br/>
         <button onClick={this.onClickGet}>点我get</button>
         <br/>
