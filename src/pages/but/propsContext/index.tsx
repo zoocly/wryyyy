@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import {Provider} from './conifg';
+import {Provider} from './config';
 import Son from './comp/son';
 import {awsl} from 'src/pages/services/login'
 export default function index() {

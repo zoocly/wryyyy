@@ -22,6 +22,7 @@ const config: IConfig =  {
           /components\//,
           /comp\//,
           /config\//,
+          /config./,
         ],
       },
     }],

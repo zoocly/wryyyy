@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import {Consumer} from '../conifg';
+import {Consumer} from '../config';
 export default function son() {
   const [propsToState,setPropsToState] = useState();
   useEffect(()=>{
