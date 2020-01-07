@@ -23,7 +23,12 @@ function index(props:any, ref:any) {
   };
   return (
     <Fragment>
+      <div>1233</div>
 
+
+
+
+      
       <Provider value={{cardConfig}}>
         <CardEdit ref={cardRef}/>
       </Provider>
