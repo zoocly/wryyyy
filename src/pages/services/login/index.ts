@@ -17,3 +17,16 @@ export function login(params:any) {
     body:params
   });
 }
+
+export function getMemTotal(params:any) {
+  return request(`/api/chart/mem/getMemTotal`,{
+    method:'POST',
+    body:params
+  });
+}
+export function getMemTotal2(params:any) {
+  return request(`/api/chart/mem/getMemTotal2`,{
+    method:'POST',
+    body:params
+  });
+}
