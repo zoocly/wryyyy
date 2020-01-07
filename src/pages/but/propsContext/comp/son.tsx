@@ -9,7 +9,10 @@ export default function son() {
     <div>
       {JSON.stringify(propsToState)}
       <Consumer>
-        {value => setPropsToState(value)}
+        {value => {
+          setPropsToState(value);
+          return null
+        }}
       </Consumer>
     </div>
   )
