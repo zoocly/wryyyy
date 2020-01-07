@@ -1,7 +1,8 @@
-import React, { forwardRef, Fragment, useEffect, useImperativeHandle, useState } from 'react';
+import React, { forwardRef, Fragment, useEffect, useImperativeHandle, useMemo, useState } from 'react';
 import {Modal,Checkbox,Row,Col} from 'antd';
 import style from './index.less';
 import _isEmpty from 'lodash/isEmpty';
+import _sortBy from 'lodash/sortBy';
 import { getDictChartList, saveChart } from './servers';
 import { error } from 'components/Notice';
 const CheckboxGroup = Checkbox.Group;
@@ -73,7 +74,7 @@ function index(props:any, ref:any) {
     return (
       <Row gutter={16}>
         {
-          !_isEmpty(arr) && arr.map((item:any)=>{
+          !_isEmpty(arr) && _sortBy(arr,'key').map((item:any)=>{
             const {value:{ coverImg = ''}={}, key = '', name = ''} = item || {};
             return (
               <Col span={8} key={key} style={{marginTop:'10px'}}>
@@ -89,6 +90,7 @@ function index(props:any, ref:any) {
       </Row>
     )
   };
+  // console.log('renderModal');
   return (
     <Fragment>
     <Modal destroyOnClose

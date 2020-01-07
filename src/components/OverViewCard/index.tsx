@@ -43,6 +43,7 @@ function index(props:any, ref:any) {
   const submit = (val:any) => {
     getList('2333');
   };
+  // console.log('renderMain');
   return (
     <Fragment>
       <Row type="flex" justify="start" gutter={16}>
@@ -71,7 +72,14 @@ function index(props:any, ref:any) {
           },[JSON.stringify(check)])
         }
       </Row>
-      <CardEdit ref={cardRef} {...props} check={check} submit={submit}/>
+      {
+        useMemo(()=>{
+          // console.log(check,'check');
+          return (
+            <CardEdit ref={cardRef} {...props} check={check} submit={submit}/>
+          )
+        },[JSON.stringify(check)])
+      }
     </Fragment>
   );
 }
