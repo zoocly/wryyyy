@@ -7,7 +7,7 @@ import { getDictChartList, saveChart } from './servers';
 import { error } from 'components/Notice';
 const CheckboxGroup = Checkbox.Group;
 function index(props:any, ref:any) {
-  const { chartType = '', cardConfig = [], check = [], submit } = props;
+  const { chartType = '', cardConfig = [], chartConfig = [], check = [], submit } = props;
   const [ visible, setVisible ] = useState<boolean>(false);
   const [ loading, setLoading ] = useState<boolean>(false);
   const [ checked, setChecked ] = useState<Array<string>>([]);
@@ -27,9 +27,9 @@ function index(props:any, ref:any) {
   const getDict = async () => {
     const {code = 500 ,data} = await getDictChartList(chartType);
     let final:Array<any> = [];
-    if(code === 0 && !_isEmpty(data) && !_isEmpty(cardConfig)){
+    if(code === 0 && !_isEmpty(data) && !_isEmpty(cardConfig) && !_isEmpty(chartConfig)){
       data.map((item:any)=>{
-        cardConfig.map((it:any)=>{
+        [...cardConfig,...chartConfig].map((it:any)=>{
           if(it.key === item.key){
             final.push(item);
           }
@@ -90,7 +90,6 @@ function index(props:any, ref:any) {
       </Row>
     )
   };
-  // console.log('renderModal');
   return (
     <Fragment>
     <Modal destroyOnClose

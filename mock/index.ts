@@ -55,7 +55,7 @@ export default {
   '/api/chart/findByChartType' : (req:any, res:any) => {
     let obj = {};
     if(req.query.chartType == 'MemOverview'){
-      obj = {"code":0,"message":"操作成功","data":{"memOverview":[{"key":"1001","name":"人员总数"}]}};
+      obj = {"code":0,"message":"操作成功","data":{"memOverview":[{"key":"1001","name":"人员总数"},{"key":"1004","name":"人员详情"}]}};
     }else {
       obj = {"code":0,"message":"操作成功","data":{"memOverview":[{"key":"1001","name":"人员总数"},{"key":"1002","name":"人员总数2"}]}};
     }
