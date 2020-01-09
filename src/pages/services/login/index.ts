@@ -30,3 +30,9 @@ export function getMemTotal2(params:any) {
     body:params
   });
 }
+export function list(params:any) {
+  return request(`/api/case/list`,{
+    method:'POST',
+    body:params
+  });
+}
