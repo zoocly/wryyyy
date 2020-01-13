@@ -1,5 +1,6 @@
 import React from 'react';
 import Cards from 'components/OverViewCard';
+import FormComp from './comp/form';
 import _set from 'lodash/set';
 import _get from 'lodash/get';
 import {cardConfig, chartConfig} from './config';
@@ -20,6 +21,7 @@ export default class index extends React.Component<any,any> {
                chartConfig={chartConfig}
                chartType={'memOverview'}
         />
+        <FormComp/>
       </div>
     );
   }

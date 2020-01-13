@@ -1,7 +1,9 @@
 import React, { Fragment } from 'react';
 import { Button, Form, Input } from 'antd';
+import TSelect from 'components/TableSelect';
 import _debounce from 'lodash/debounce';
 import _isEmpty from 'lodash/isEmpty';
+import {list} from '@/pages/services/login';
 const FormItem = Form.Item;
 const formItemLayout = {
   labelCol: {
@@ -59,10 +61,34 @@ function index(props:any) {
         </FormItem>
         <Button onClick={sure}>确定</Button>
       </Form>
-      <input type="text" onChange={_debounce(onChange,1000)}/> 
+      <input type="text" onChange={_debounce(onChange,1000)}/>
       <Input onChange={_debounce(function(val) {
         console.log(val)
       },1000)}/>
+      <FormItem
+        label={'vvv'}
+      >
+        {getFieldDecorator('zxc', {
+          // initialValue:dataInfo['a0501B'] || undefined,
+          rules: [
+            { required: true, message: '' },
+            // { validator: _debounce(validateIDCard,1000) }
+          ],
+        })(
+          <TSelect title={'ssd'}
+                   action={list}
+                   columns={[{
+                    title:'案件名称',
+                    dataIndex:'name',
+                    width:160,
+                    align: 'center',
+                   }]}
+                   payload={{orgcode:'123'}}
+                   onSubmit={(val:any)=>{console.log('最后的拿到的值',val)}}
+                   onChange={()=>{}}
+          />
+        )}
+      </FormItem>
     </div>
   )
 }
