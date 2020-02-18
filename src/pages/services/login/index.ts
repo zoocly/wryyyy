@@ -2,6 +2,7 @@
 import request from 'src/utils/request';
 import qs from 'qs';
 export function awsl(params:any) {
+  console.log(params,'params');
   return request(`/api/awsl?${qs.stringify(params)}`);
 }
 
@@ -19,6 +20,7 @@ export function login(params:any) {
 }
 
 export function getMemTotal(params:any) {
+  console.log(params,'params')
   return request(`/api/chart/mem/getMemTotal`,{
     method:'POST',
     body:params
