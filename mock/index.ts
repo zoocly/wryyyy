@@ -34,6 +34,7 @@ export default {
         {code:'002.002', name:'牌子', parentCode:'002', icon:'user', color:'',url:'/thisMan/paizi'},
         {code:'002.003', name:'抽奖', parentCode:'002', icon:'user', color:'',url:'/thisMan/lottery'},
         {code:'002.004', name:'umi的hook？', parentCode:'002', icon:'user', color:'',url:'/thisMan/umiHook'},
+        {code:'002.005', name:'练习写table表', parentCode:'002', icon:'user', color:'',url:'/thisMan/textTable'},
 
         {code:'003', name:'虽不浪漫', parentCode:'-1', icon:'user', color:''},
         {code:'003.001', name:'没毛得起来的毛玻璃', parentCode:'003', icon:'user', color:'',url:'/style/text1'},
