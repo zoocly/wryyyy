@@ -17,3 +17,26 @@
     display: inline-block;
   }
 }
+
+.wrap {
+  width: 200px;
+  border: 1px solid #333;
+  .left {
+    float: left;
+    background: blue;
+    height: 100px;
+    width: 50%;
+  }
+  .right {
+    float: left;
+    background: red;
+    height: 50px;
+    width: 50%;
+  }
+}
+.wrap:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
