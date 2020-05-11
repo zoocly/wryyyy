@@ -1,9 +1,11 @@
 import React, {Fragment} from 'react';
 import {Divider} from 'antd';
+import { SmileOutlined } from '@ant-design/icons'
 import style from './index.less';
 export default function index() {
   return (
     <Fragment>
+      <SmileOutlined/>
       <div className={style.boxaaa}>
         <p>方法1：这段文字能不能这样判断一下，当文字不足一行时，让它居中显示，当文字超过一行就让它居左，不然居中显示很奇怪，因为最后一行是吊着的</p>
       </div>

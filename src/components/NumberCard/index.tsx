@@ -2,13 +2,14 @@ import React, {Fragment, PureComponent} from 'react';
 import {Avatar, Card, Tooltip} from 'antd';
 import CountUp from 'react-countup';
 import style from './index.less';
+import { SmileOutlined } from '@ant-design/icons';
 
 interface Interface {
   src?:string,
   iconColor:string,
   title:string,
   end:number,
-  icon?:string,
+  icon?:React.ReactNode,
   tooltipTitle?:string,
   prefix?:string,
   suffix?:string,
@@ -25,7 +26,7 @@ interface Interface {
 }
 export default function index (props:Interface) {
   const {
-    icon = 'smile',
+    icon = <SmileOutlined/>,
     tooltipTitle = '',
     iconColor = '#ccc',
     title = '暂无标题',

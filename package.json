@@ -11,7 +11,7 @@
   "dependencies": {
     "@types/qs": "^6.9.0",
     "@umijs/hooks": "^1.6.1",
-    "antd": "^3.19.5",
+    "antd": "^4.2.0",
     "dva": "^2.6.0-beta.6",
     "dva-model-extend": "^0.1.2",
     "echarts": "^4.6.0",
@@ -30,7 +30,7 @@
     "@types/react": "^16.7.18",
     "@types/react-dom": "^16.0.11",
     "@types/react-test-renderer": "^16.0.3",
-    "@umijs/preset-react": "^1.8.0",
+    "@umijs/preset-react": "^1.4.20",
     "babel-eslint": "^9.0.0",
     "eslint": "^5.4.0",
     "eslint-config-umi": "^1.4.0",
@@ -44,8 +44,7 @@
     "tslint": "^5.12.0",
     "tslint-eslint-rules": "^5.4.0",
     "tslint-react": "^3.6.0",
-    "umi": "^3.1.4",
-    "umi-types": "^0.3.0"
+    "umi": "^3.1.4"
   },
   "lint-staged": {
     "*.{ts,tsx}": [

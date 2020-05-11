@@ -8,7 +8,7 @@ export default {
     src: path.resolve(__dirname, 'src/'),
     components: path.resolve(__dirname, 'src/components'),
   },
-  "proxy": {
+  proxy: {
     "/api": {
       // "target": "http://dev.1809.tm",//需要添加 /api
       "target": "http://139.9.233.106:9098",// 外网开发访问

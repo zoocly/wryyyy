@@ -77,7 +77,7 @@ export default async function request(path, options, ...extend) {
     credentials: 'include'
   };
   const Authorization = sessionStorage.getItem('authorization') || localStorage.getItem('authorization') || "";
-  const {pathname,query}=window.location;
+  const { location:{ pathname, query  } = {} }=history;
   const newOptions = { ...defaultOptions, ...options };
   if (newOptions.method !== 'GET') {
     if (newOptions.body instanceof FormData) {
