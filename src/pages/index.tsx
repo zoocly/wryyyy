@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Redirect from 'umi/redirect';
+import { Redirect } from 'umi';
 
 export default function() {
   useEffect(()=>{

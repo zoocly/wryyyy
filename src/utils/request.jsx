@@ -1,6 +1,6 @@
 import {fetch} from 'dva';
 import {ApiAuthError, ApiJsonError, ApiModuleError, ApiServerError,} from './errors';
-import router from 'umi/router';
+import { history } from 'umi';
 import {serviceError} from 'src/components/Notice';
 function parseJSON(response) {
   return new Promise((resolve, reject) => {
@@ -61,7 +61,7 @@ function checkError(response) {
         if(codeData.includes(code)){
           sessionStorage.clear();
           localStorage.clear();
-          router.push('/');
+          history.push('/');
         }
         serviceError(response['message'],response['messageDetail']);
       }
@@ -77,7 +77,7 @@ export default async function request(path, options, ...extend) {
     credentials: 'include'
   };
   const Authorization = sessionStorage.getItem('authorization') || localStorage.getItem('authorization') || "";
-  const {pathname,query}=window.g_history.location;
+  const {pathname,query}=window.location;
   const newOptions = { ...defaultOptions, ...options };
   if (newOptions.method !== 'GET') {
     if (newOptions.body instanceof FormData) {

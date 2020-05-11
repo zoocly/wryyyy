@@ -16,18 +16,21 @@
     "dva-model-extend": "^0.1.2",
     "echarts": "^4.6.0",
     "echarts-for-react": "^2.0.15-beta.1",
+    "eslint-plugin-react-hooks": "^4.0.0",
     "lodash": "^4.17.15",
     "qs": "^6.9.1",
     "react": "^16.8.6",
     "react-countup": "^4.3.2",
     "react-datasheet": "^1.4.1",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "typescript": "^3.8.3"
   },
   "devDependencies": {
     "@types/jest": "^23.3.12",
     "@types/react": "^16.7.18",
     "@types/react-dom": "^16.0.11",
     "@types/react-test-renderer": "^16.0.3",
+    "@umijs/preset-react": "^1.8.0",
     "babel-eslint": "^9.0.0",
     "eslint": "^5.4.0",
     "eslint-config-umi": "^1.4.0",
@@ -41,8 +44,7 @@
     "tslint": "^5.12.0",
     "tslint-eslint-rules": "^5.4.0",
     "tslint-react": "^3.6.0",
-    "umi": "^2.9.0",
-    "umi-plugin-react": "^1.8.0",
+    "umi": "^3.1.4",
     "umi-types": "^0.3.0"
   },
   "lint-staged": {

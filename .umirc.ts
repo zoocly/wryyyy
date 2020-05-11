@@ -1,32 +1,9 @@
-import { IConfig } from 'umi-types';
 const path=require('path');
-const config: IConfig =  {
-  treeShaking: true,
-  plugins: [
-    ['umi-plugin-react', {
-      antd: true,
-      dva: true,
-      dynamicImport: true,
-      title: 'zooo',
-      dll: true,
-      locale: {
-        enable: true,
-        default: 'en-US',
-      },
-      routes: {
-        exclude: [
-          /models\//,
-          /services\//,
-          /model\.(t|j)sx?$/,
-          /service\.(t|j)sx?$/,
-          /components\//,
-          /comp\//,
-          /config\//,
-          /config./,
-        ],
-      },
-    }],
-  ],
+export default {
+  antd: {},
+  dva: {},
+  dynamicImport: {},
+  title: 'zooo',
   alias: {
     src: path.resolve(__dirname, 'src/'),
     components: path.resolve(__dirname, 'src/components'),
@@ -41,6 +18,4 @@ const config: IConfig =  {
       "pathRewrite": { "^/api" : "/api" }
     },
   }
-};
-
-export default config;
+}

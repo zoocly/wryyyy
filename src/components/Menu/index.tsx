@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Menu, Icon, Skeleton, Spin } from 'antd';
 import _get from 'lodash/get';
 import _isEmpty from 'lodash/isEmpty';
-import router from "umi/router";
+import { history } from "umi";
 import {connect} from "react-redux";
 const { SubMenu } = Menu;
 function index(props:any) {
@@ -31,7 +31,7 @@ function index(props:any) {
     const { url = '' } = item || {};
     setSelectedKeys(item['code']);
     sessionStorage.setItem('keys',item['code']);
-    router.push(url);
+    history.push(url);
   };
   const openItem = (item:any) =>{
     const {code = undefined} = item || {};
