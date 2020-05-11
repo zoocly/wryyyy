@@ -28,6 +28,7 @@ export default {
         {code:'001.001', name:'明', parentCode:'001', icon:'user', color:'',url:'/but/home'},
         {code:'001.002', name:'白', parentCode:'001', icon:'user', color:'',url:'/but/login'},
         {code:'001.003', name:'context传值', parentCode:'001', icon:'user', color:'',url:'/but/propsContext'},
+        {code:'001.004', name:'才哥哥直播脱衣', parentCode:'001', icon:'user', color:'',url:'/but/video'},
 
         {code:'002', name:'这样的男人', parentCode:'-1', icon:'user', color:''},
         {code:'002.001', name:'render渲染', parentCode:'002', icon:'user', color:'',url:'/thisMan/recatRender'},
