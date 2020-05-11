@@ -4,23 +4,28 @@ import TSelect from 'components/TableSelect';
 import _debounce from 'lodash/debounce';
 import _isEmpty from 'lodash/isEmpty';
 import {list} from '@/pages/services/login';
-const FormItem = Form.Item;
 const formItemLayout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 16 },
 };
-function index(props:any) {
+export default function index(props:any){
+  const [form] = Form.useForm();
   const onFinish = (values:any) =>{
     console.log(values,'onFinish')
   };
   const onFinishFailed = (values:any) =>{
     console.log(values,'onFinishFailed')
   };
+  const onClick = () =>{
+    console.log(form.setFieldsValue({password:'123'}));
+  };
   return (
     <div>
+      <Button onClick={onClick}>setFieldsValue</Button>
       <Form
         {...formItemLayout}
         name="basic"
+        form={form}
         initialValues={{ username: 12333 }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
@@ -33,6 +38,13 @@ function index(props:any) {
           <Input />
         </Form.Item>
 
+        {({ getFieldValue }) => {
+          return getFieldValue('password') === '11' ? (
+            <Form.Item name="customizeGender" label="Customize Gender" rules={[{ required: true }]}>
+              <Input />
+            </Form.Item>
+          ) : null;
+        }}
         <Form.Item
           label="密码"
           name="password"
@@ -50,4 +62,3 @@ function index(props:any) {
     </div>
   )
 }
-export default index;
