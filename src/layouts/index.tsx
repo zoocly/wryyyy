@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Breadcrumb, LocaleProvider } from 'antd';
+import { Layout, Breadcrumb, ConfigProvider } from 'antd';
 import zh_CN from 'antd/lib/locale-provider/zh_CN';
 import Menu from 'src/components/Menu';
 import style from './index.css';
@@ -18,7 +18,7 @@ class BasicLayout extends React.Component<any, any> {
     const { children } = this.props;
     return (
       <Layout style={{ minHeight: '100vh' }}>
-        <LocaleProvider locale={zh_CN}>
+        <ConfigProvider locale={zh_CN}>
           <Sider collapsible={true} collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
             <div className="logo" />
             <Menu/>
@@ -30,7 +30,7 @@ class BasicLayout extends React.Component<any, any> {
               </div>
             </Content>
           </Layout>
-        </LocaleProvider>
+        </ConfigProvider>
       </Layout>
     )
   }

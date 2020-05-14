@@ -1,9 +1,5 @@
 import React, { Fragment } from 'react';
-import { Button, Form, Input } from 'antd';
-import TSelect from 'components/TableSelect';
-import _debounce from 'lodash/debounce';
-import _isEmpty from 'lodash/isEmpty';
-import {list} from '@/pages/services/login';
+import { Button, Form, Input, DatePicker } from 'antd';
 const formItemLayout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 16 },
@@ -11,10 +7,10 @@ const formItemLayout = {
 export default function index(props:any){
   const [form] = Form.useForm();
   const onFinish = (values:any) =>{
-    console.log(values,'onFinish')
+    console.log(values,'onFinish');
   };
   const onFinishFailed = (values:any) =>{
-    console.log(values,'onFinishFailed')
+    console.log(values,'onFinishFailed');
   };
   const onClick = () =>{
     console.log(form.setFieldsValue({password:'123'}));
@@ -53,6 +49,14 @@ export default function index(props:any){
           <Input.Password />
         </Form.Item>
 
+        <Form.Item
+          label="密码"
+          name="password"
+          rules={[{ required: true, message: 'Please input your password!' }]}
+        >
+          <DatePicker />
+        </Form.Item>
+
         <Form.Item>
           <Button type="primary" htmlType="submit">
             Submit
@@ -60,5 +64,5 @@ export default function index(props:any){
         </Form.Item>
       </Form>
     </div>
-  )
+  );
 }
