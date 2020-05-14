@@ -1,13 +1,11 @@
 import React from 'react';
 import {getMemTotal,getMemTotal2} from 'src/pages/services/login';
-import _isEmpty from 'lodash/isEmpty';
-import _isArray from 'lodash/isArray';
-import _get from 'lodash/get';
+import { TeamOutlined } from '@ant-design/icons';
 export const cardConfig = [
   {
     key:'1001',
     value:{
-      icon:'team',
+      icon:<TeamOutlined />,
       // coverImg:require('@/components/CardsGroup/assets/mem/dangyuan.jpg'),
       iconColor:'#17C1C5',
       title:'党员总数',
