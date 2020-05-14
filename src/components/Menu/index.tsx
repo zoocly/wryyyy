@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import { Menu, Icon, Skeleton, Spin } from 'antd';
+import { Menu, Skeleton, Spin } from 'antd';
+import { SmileOutlined } from '@ant-design/icons';
 import _get from 'lodash/get';
 import _isEmpty from 'lodash/isEmpty';
 import { history } from "umi";
@@ -51,7 +52,7 @@ function index(props:any) {
           <SubMenu
             onTitleClick={()=>openItem(it)}
             key={it['code']}
-            title={<span><Icon type={it['icon']} /><span>{it['name']}</span></span>}
+            title={<span>{it['icon']}<span>{it['name']}</span></span>}
           >
             { renderMenuItem(it.children) }
           </SubMenu>
@@ -59,7 +60,7 @@ function index(props:any) {
       }else {
         return (
           <Menu.Item key={it['code']} onClick={()=>itemClick(it)}>
-            <Icon type={it['icon'] || 'user'}/>
+            {it['icon'] || <SmileOutlined />}
             <span>{it['name']}</span>
           </Menu.Item>
         );

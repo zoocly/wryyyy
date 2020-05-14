@@ -34,13 +34,6 @@ export default function index(props:any){
           <Input />
         </Form.Item>
 
-        {({ getFieldValue }) => {
-          return getFieldValue('password') === '11' ? (
-            <Form.Item name="customizeGender" label="Customize Gender" rules={[{ required: true }]}>
-              <Input />
-            </Form.Item>
-          ) : null;
-        }}
         <Form.Item
           label="密码"
           name="password"
@@ -50,8 +43,8 @@ export default function index(props:any){
         </Form.Item>
 
         <Form.Item
-          label="密码"
-          name="password"
+          label="日期"
+          name="time"
           rules={[{ required: true, message: 'Please input your password!' }]}
         >
           <DatePicker />
