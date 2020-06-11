@@ -29,10 +29,6 @@
       //color: #999;
       font-size: 14px;
       //border-bottom: none;
-      border-right: none;
-      &:last-child{
-        border-right: 1px solid #e8e8e8;
-      }
     }
     .ant-table-tbody>tr:nth-child(2n) {
       background: #f5f9fc;
@@ -41,10 +37,27 @@
       color: #666;
       //border-bottom: none;
       font-size: 14px;
-      border-right: none;
-      &:last-child{
-        border-right: 1px solid #e8e8e8;
-      }
     }
+    //.ant-table {
+    //  a {
+    //    color: #666;
+    //  }
+    //  a:hover{
+    //    color: #1890ff;
+    //  }
+    //  .ant-table-column-sorter{
+    //    margin: 0;
+    //    padding: 0
+    //  }
+    //}
+
+    // --- 干部系统独有样式 ---
+    .ant-table-tbody > tr > td{
+      word-break: break-word;
+    }
+    .ant-table-thead > tr > th{
+      padding: 8px;
+    }
+    // --- 干部系统独有样式 ---
   }
 }

@@ -1,0 +1,35 @@
+.container{
+    width: 100%;
+    padding: 20px 0 0 0;
+    color: #404040;
+    position: relative;
+    height: 50px;
+    font-size: 14px;
+    .paginationTotal{
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        float: left;
+    }
+    .paginationBtn{
+        float: right;
+        .seltBtn{
+            float: left;
+        }
+        .sizeChanger{
+            padding-left: 20px;
+            float: left;
+            .sizeChangerBtn{
+                padding: 0 5px;
+            }
+        }
+    }
+    :global(.ant-pagination-item-active){
+        border-color: #2f81f8 !important;
+        background-color: #2f81f8 !important;
+        a{
+            color:#fff !important;
+        }
+    }
+}
+

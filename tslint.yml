@@ -4,7 +4,6 @@ extends:
   - tslint-eslint-rules
 rules:
   eofline: true
-  no-console: false
   no-construct: true
   no-debugger: true
   no-reference: true
@@ -13,3 +12,4 @@ rules:
   jsx-boolean-value: false
   jsx-curly-spacing: false
   jsx-alignment: false
+  no-console: [true, "log", "error"]

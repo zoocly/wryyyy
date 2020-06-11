@@ -1,79 +1,47 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import {Table} from 'antd';
 import styles from './index.less';
-import { Table } from 'antd';
-import { TableEventListeners } from 'antd/lib/table';
+
 interface propsType{
   columns:Array<object>,
   data:Array<object>,
-  rowKey?:any,
+  rowKey?:string,
   className?:string,
   scroll?:object,
   loading?:boolean,
-  onRow?:(record: object, index: number)=>TableEventListeners,
+  onRow?:(object:object)=>void,
   rowSelection?:object,
   rowClassName?:(record:any, index:number)=>string,
   components?:any,
-  pagination?:object | boolean,
-  onPageChange?:(page:number,pageSize:number)=>void,
+  extendProps?: any,
 }
-export default function index(props:propsType) {
-  let {columns,data,rowKey,className,scroll=undefined,loading,onRow,rowSelection,rowClassName,components,pagination} = props;
-  const [ pageSize, setPageSize ] = useState<number>(10);
-
-  const onChange=(page:number,pageSize:number)=>{
-    const { onPageChange } = props;
-    setPageSize(pageSize);
-    onPageChange && onPageChange(page,pageSize);
-  };
-  const onShowSizeChange=(page:number, size:number)=>{
-    const { onPageChange } = props;
-    let lastPage = page;
-    if(typeof pageSize !== 'number'){
-      lastPage = 1
-    }else{
-      lastPage= pageSize !== size ? 1 : page
-    }
-    onPageChange && onPageChange(lastPage, size);
-  };
-
-  const defaultPagination={
-    current:1,
-    pageSize:10,
-    total:0,
-    size:'small',
-    showSizeChanger:false,
-    showTotal:(total:number)=>`共 ${total} 条`,
-    onChange:onChange,
-    onShowSizeChange:onShowSizeChange,
-  };
-  if(columns.length>0) {
-    for (let obj of columns) {
-      if (!obj.hasOwnProperty('key')) {
-        // @ts-ignore
-        obj['key'] = obj['dataIndex']
+export default class index extends React.Component<propsType,{}>{
+  render(): React.ReactNode {
+    const {columns,data,rowKey,className,scroll=undefined,loading,onRow,rowSelection,rowClassName,components, extendProps}=this.props;
+    if(columns.length>0) {
+      for (let obj of columns) {
+        if (obj['key'] === undefined) {
+          obj['key'] = obj['dataIndex']
+        }
       }
     }
+    return(
+      <Table
+        bordered={true}
+        {...extendProps}
+        onRow={onRow}
+        rowSelection={rowSelection}
+        className={className ? `${className} ${styles.mytable}` : styles.mytable}
+        columns={columns}
+        dataSource={data}
+        rowKey={rowKey ? rowKey : (record, index) => `${index}`}
+        pagination={false}
+        scroll={scroll}
+        loading={loading}
+        rowClassName={rowClassName}
+        components={components}
+        size={'middle'}
+      />
+    );
   }
-  if(typeof pagination==='object'){
-    pagination={...defaultPagination,...pagination};
-  }
-
-  return (
-    <Table
-      bordered={true}
-      onRow={onRow}
-      rowSelection={rowSelection}
-      className={className ? `${className} ${styles.mytable}` : styles.mytable}
-      columns={columns}
-      dataSource={data}
-      rowKey={rowKey ? rowKey : (record, index) => `${index}`}
-      //@ts-ignore
-      pagination={pagination}
-      scroll={scroll}
-      loading={loading}
-      rowClassName={rowClassName}
-      components={components}
-      size={'middle'}
-    />
-  )
 }
