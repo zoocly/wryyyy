@@ -30,6 +30,7 @@ function index(props:any,ref:any){
   const [ selectedRowKeys, setSelectedRowKeys ] = useState<Array<any>>([]);
   const [ selectedItems, setSelectedItems ] = useState<Array<any>>([]);
   const [ inputValue, setInputValue ] = useState<string>('');
+  const [ query, setQurey ] = useState(undefined); // 使用open时，需要额外传值的
 
   useEffect(()=>{
     // 初始化rowSelection
@@ -96,7 +97,7 @@ function index(props:any,ref:any){
   const handleOk = async () =>{
     const {onSubmit} = props;
     setConfirmLoading(true);
-    const resCode = await onSubmit({selectedRowKeys,selectedItems});
+    const resCode = await onSubmit({selectedRowKeys,selectedItems,query});
     setConfirmLoading(false);
     if(!hasOwnShowComp){
       setInputValueFunc({selectedRowKeys,selectedItems});
@@ -107,7 +108,7 @@ function index(props:any,ref:any){
     setVisible(false);
   };
   useImperativeHandle(ref, () => ({
-    open:()=>{ open() },
+    open:(query:any)=>{ open();setQurey(query)},
     clear:()=>{ clear() }
   }));
   const open=()=>{
