@@ -38,6 +38,7 @@ export default function index() {
     <Fragment>
       <h1>使用map来实现键值对的匹配,完成个人信息的需求</h1>
       {renderItem()}
+      <img src={require('@/assets/map&set.png')}/>
     </Fragment>
   )
 }
