@@ -12,4 +12,4 @@ rules:
   jsx-boolean-value: false
   jsx-curly-spacing: false
   jsx-alignment: false
-  no-console: [true, "log", "error"]
+  no-console: [false, "log", "error"]

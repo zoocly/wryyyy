@@ -41,6 +41,8 @@ export default {
         {code:'003.001', name:'没毛得起来的毛玻璃', parentCode:'003', icon:'', color:'',url:'/style/text1'},
         {code:'003.002', name:'多行居左一行居中', parentCode:'003', icon:'', color:'',url:'/style/text2'},
 
+        {code:'004', name:'这可是好东西啊', parentCode:'-1', icon:'', color:''},
+        {code:'003.001', name:'深拷贝和浅拷贝', parentCode:'004', icon:'', color:'',url:'/note/deep'},
       ]
     };
     setTimeout(() => {
