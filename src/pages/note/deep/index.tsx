@@ -12,7 +12,7 @@ export default function index() {
       基本类型会指向不同的堆，引用类型会指向同一个堆的数据 <br/>
       1. 浅拷贝只能拷贝基本类型，所以解构不能拷贝 {JSON.stringify([{a:1}])} <br/>
       2. 引用拷贝：只能拷贝基本类型 <br/>
-      concat.slice() 也是浅拷贝 <br/>
+      concat.slice() 也是浅拷贝 。<br/>
       Object.assign() 也是浅拷贝 <br/>
       JSON.stringify() 是内置的深拷贝 ，但是会有 正则 空方法 会漏掉的情况<br/>
       <Divider/>
