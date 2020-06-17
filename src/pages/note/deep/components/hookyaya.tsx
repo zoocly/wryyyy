@@ -125,15 +125,10 @@ export default function hookyaya() {
       <br/>
       <a href="https://juejin.im/post/5ec7372cf265da76de5cd0c9#heading-2">React Hooks 最佳实践</a>
       {example()}
-      <Divider/>
       {example2()}
-      <Divider/>
       {example3()}
-      <Divider/>
       {example4()}
-      <Divider/>
       {example5()}
-      <Divider/>
       {example6()}
     </Fragment>
   );
