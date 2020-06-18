@@ -121,9 +121,9 @@ export default function hookyaya() {
   return (
     <Fragment>
       <h1>react hook 的 setState 和 setTimeOut 以及 useRef 的骚操作</h1>
-      <a href="https://zh-hans.reactjs.org/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often">官网Hooks FAQ</a>
+      <a target={'_blank'} href="https://zh-hans.reactjs.org/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often">官网Hooks FAQ</a>
       <br/>
-      <a href="https://juejin.im/post/5ec7372cf265da76de5cd0c9#heading-2">React Hooks 最佳实践</a>
+      <a target={'_blank'} href="https://juejin.im/post/5ec7372cf265da76de5cd0c9#heading-2">React Hooks 最佳实践</a>
       {example()}
       {example2()}
       {example3()}
