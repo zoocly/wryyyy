@@ -1,5 +1,40 @@
 import React, { Fragment } from 'react';
+import { Divider } from 'antd';
 export default function index() {
+
+  const doSth = () =>{
+    const obj = { name:'aaaa', age:'bbb' };
+    const arr = [ '111', '222' ];
+    const map = new Map([['a',1],['b',2]]);
+    const set = new Set([['a',1],['b',2]]);
+    const str = 'string';
+    let printObj = '', printMap = '',printSet = '', printStr = '', printArr = '';
+    for(let [k, v] of Object.entries(obj)){
+      printObj += `key:${k},value:${v}; `
+    }
+    for(let [ index, it ] of arr.entries()){
+      printArr += `index:${index},it:${it}; `
+    }
+    for(let [ index, it ] of map){
+      printMap += `index:${index},it:${it}; `
+    }
+    for(let [ index, it ] of set){
+      printSet += `index:${index},it:${it}; `
+    }
+    for(let i of str){
+      printStr += i + ',';
+    }
+    return (
+      <div>
+        <p>{printObj}</p>
+        <p>{printArr}</p>
+        <p>{printMap}</p>
+        <p>{printSet}</p>
+        <p>{printStr}</p>
+      </div>
+    )
+  };
+
   return (
     <Fragment>
       <ul>
@@ -16,6 +51,10 @@ export default function index() {
       对于数组遍历，如果不需要知道索引<code>for..of</code>迭代更合适，因为还可以中断；<br/>
         如果需要知道索引，则<code>forEach()</code>更合适；<br/>
         对于其他字符串，类数组，类型数组的迭代，<code>for..of</code>更占上风更胜一筹。但是注意低版本浏览器的是配性。</p>
+      <Divider/>
+      <h1><code>for...of</code> 对 obj map set str arr 的遍历</h1>
+      {doSth()}
+      <img src={require('@/assets/NotRecommended.png')}/>
     </Fragment>
   )
 }
