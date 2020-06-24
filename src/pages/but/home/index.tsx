@@ -1,6 +1,7 @@
 import React from 'react';
 import Cards from 'components/OverViewCard';
 import FormComp from './comp/form';
+import FormComp2 from './comp/form2';
 import _set from 'lodash/set';
 import _get from 'lodash/get';
 import {cardConfig, chartConfig} from './config';
@@ -21,31 +22,32 @@ export default class index extends React.Component<any,any> {
 
       3、setTimeout 中的代码，触发时 isBatchingUpdates 为 false，所以能够直接进行更新，所以连着输出 2，3。
 */
-    this.setState({val: this.state.val + 1});
-    console.log(this.state.val);    // 第 1 次 log
-
-    this.setState({val: this.state.val + 1});
-    console.log(this.state.val);    // 第 2 次 log
-
-    setTimeout(() => {
-      this.setState({val: this.state.val + 1});
-      console.log(this.state.val);  // 第 3 次 log
-
-      this.setState({val: this.state.val + 1});
-      console.log(this.state.val);  // 第 4 次 log
-    }, 0);
+    // this.setState({val: this.state.val + 1});
+    // console.log(this.state.val);    // 第 1 次 log
+    //
+    // this.setState({val: this.state.val + 1});
+    // console.log(this.state.val);    // 第 2 次 log
+    //
+    // setTimeout(() => {
+    //   this.setState({val: this.state.val + 1});
+    //   console.log(this.state.val);  // 第 3 次 log
+    //
+    //   this.setState({val: this.state.val + 1});
+    //   console.log(this.state.val);  // 第 4 次 log
+    // }, 0);
   }
 
   render(): React.ReactNode {
     return (
       <div>
-        <Button onClick={()=>{_get(this,'Cards.open',()=>{})()}}>编辑</Button>
-        <Cards ref={e=>_set(this,'Cards',e)}
-               cardConfig={cardConfig}
-               chartConfig={chartConfig}
-               chartType={'memOverview'}
-        />
+        {/*<Button onClick={()=>{_get(this,'Cards.open',()=>{})()}}>编辑</Button>*/}
+        {/*<Cards ref={e=>_set(this,'Cards',e)}*/}
+               {/*cardConfig={cardConfig}*/}
+               {/*chartConfig={chartConfig}*/}
+               {/*chartType={'memOverview'}*/}
+        {/*/>*/}
         <FormComp/>
+        <FormComp2/>
       </div>
     );
   }

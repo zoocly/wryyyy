@@ -13,7 +13,9 @@ export default {
         a:2,b:4
       }
     };
-   res.send(obj);
+    setTimeout(() => {
+      res.send(obj);
+    }, 2000);
   },
 
   // GET POST 可省略
