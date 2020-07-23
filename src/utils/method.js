@@ -103,3 +103,4 @@ export const commafy = (num) => {
   }
   return _trim(`${front}${back === '0' ? '': `.${back}`}`)
 };
+
