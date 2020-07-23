@@ -1,0 +1,52 @@
+.page {
+  position: relative;
+}
+.leftLift {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: #2f81f8;
+}
+.rightLift {
+  .leftLift;
+  background: brown;
+  left: 200px;
+}
+.main {
+  position: absolute;
+  width: 300px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  .house {
+    border-bottom: 1px solid black;
+    width: 100%;
+    height: 100px;
+    .btns {
+      position: absolute;
+    }
+  }
+  .left {
+    width: 100px;
+    height: 100%;
+    border-right: 1px solid black;
+  }
+  .right {
+    width: 100px;
+    height: 100%;
+    border-left: 1px solid black;
+  }
+}
+
+
+.closeRight {
+  position:absolute;
+  //animation:mymove4 6s;
+  animation-iteration-count:1;
+  animation-fill-mode:forwards;
+}
+@keyframes mymove4
+{
+  from {top:500px;}
+  to {top:0px;}
+}

@@ -4,6 +4,7 @@ export default {
   dva: {},
   dynamicImport: {},
   title: 'zooo',
+  ignoreMomentLocale:true,
   alias: {
     src: path.resolve(__dirname, 'src/'),
     components: path.resolve(__dirname, 'src/components'),

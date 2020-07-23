@@ -2,9 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import style from './index.less';
 import { Button, Tag } from 'antd';
 const { CheckableTag } = Tag;
-const floor = 6;
 export default function index(props:any,ref:any) {
-  const { doorStatus, numsChange } = props;
+  const { doorStatus, numsChange, floor } = props;
   const timerRef = useRef<NodeJS.Timeout>();
   const [ toOpen, setToOpen ] = useState<any>(undefined);
   const [ selectedFloors, setSelectedFloors ] = useState([]);
