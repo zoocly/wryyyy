@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useRef, useState } from 'react';
 import style from './index.less';
 import Btns from '../../components/showFloorBtn';
 export default function index(props:any) {
@@ -7,7 +7,7 @@ export default function index(props:any) {
   const [ rightStep, setRightStep ] = useState(2);
   const [ animationStyle, setAnimationStyle ] = useState({animation:'ball-run',animationDuration:'2s',animationIterationCount:1,animationFillMode:'forwards'});
 
-  const animation = (from:any, to:any) =>{
+  const animation = (from:any, to:any, duringTime:any) =>{
     const runkeyframes =`@keyframes ball-run{0%{top: ${from}px;}100%{top: ${to}px;}}`;
     const style = document.createElement('style');
     style.type = 'text/css';
@@ -16,16 +16,20 @@ export default function index(props:any) {
     document.getElementsByTagName('head')[0].appendChild(style);
     setTimeout(function() {
       // @ts-ignore
-      document.getElementsByTagName('head')[0].removeChild(document.getElementById('add-style-id'))
-    },(from-to)/100*1000)
+      document.getElementsByTagName('head')[0].removeChild(document.getElementById('add-style-id'));
+    },duringTime*1000*5)
   };
   const onUp = (steps:number, direction:string) =>{
     let from = 600-leftStep*100;
     let to = 600-steps*100;
+    let duringTime = (from-to)/100;
+
+    console.log(duringTime,']]]');
+
     // if(from > to){
-      setAnimationStyle(e=>{ return {...e,animationDuration:`${(from-to)/100}s`} });
-      setLeftStep(steps);
-      animation(from,to);
+      setAnimationStyle(e=>{ return {...e,animationDuration:`${duringTime*5}s`} });
+      // setLeftStep(steps);
+      animation(from,to,duringTime);
     // }
   };
 
