@@ -17,7 +17,7 @@ export default function index(props:any) {
     setTimeout(function() {
       // @ts-ignore
       document.getElementsByTagName('head')[0].removeChild(document.getElementById('add-style-id'));
-    },duringTime*1000*5)
+    },duringTime*1000)
   };
   const onUp = (steps:number, direction:string) =>{
     let from = 600-leftStep*100;
@@ -27,8 +27,8 @@ export default function index(props:any) {
     console.log(duringTime,']]]');
 
     // if(from > to){
-      setAnimationStyle(e=>{ return {...e,animationDuration:`${duringTime*5}s`} });
-      // setLeftStep(steps);
+      setAnimationStyle(e=>{ return {...e,animationDuration:`${duringTime}s`} });
+      setLeftStep(steps);
       animation(from,to,duringTime);
     // }
   };
