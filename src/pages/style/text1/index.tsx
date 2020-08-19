@@ -1,6 +1,27 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import style from './index.less';
 export default function index() {
+  const timerRef = useRef<NodeJS.Timeout>();
+  const flagRef = useRef(true);
+  function selfThrottle(){
+    // 节流重在加锁「flag = false」
+    if (flagRef.current){
+      flagRef.current = false;
+      // @ts-ignore
+      clearTimeout(timerRef.current);
+      timerRef.current = undefined;
+      setTimeout(()=>{
+        console.log('zxcc');
+        flagRef.current = true;
+      },2000);
+    }
+  };
+
+  useEffect(()=>{
+    window.addEventListener('scroll', function () {
+      selfThrottle();
+    },true);
+  },[]);
   return (
     <div>
       <div style={{height:'60vh'}}>

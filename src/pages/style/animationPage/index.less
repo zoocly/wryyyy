@@ -1,0 +1,83 @@
+.box1 span {
+  color: white;
+  background: #ff502c;
+  height: 30px;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+.box1 {
+  position: relative;
+}
+.box1 span:before {
+  content: '';
+  position: absolute;
+  top: 30px;
+  left: 0px;
+  border: 5px solid;
+  border-color: darkred darkred transparent transparent;
+}
+.box1 span:after {
+  content: '';
+  position: absolute;
+  top: 30px;
+  left: 140px;
+  border: 5px solid;
+  border-color:darkred transparent transparent darkred ;
+}
+
+
+.box1:before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: -30px;
+  border-color: #ff502c;
+  border-style: solid;
+  border-width: 15px 25px 15px 15px;
+  border-left-color: transparent;
+}
+.box1:after{
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 140px;
+  border-color: #ff502c;
+  border-style: solid;
+  border-width: 15px 15px 15px 25px;
+  border-right-color: transparent;
+}
+
+.box2 {
+  position: relative;
+  span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background: #ff502c;
+    height: 30px;
+    width: 150px;
+    position: relative;
+  }
+}
+.box2 span:before {
+  content: '';
+  position: absolute;
+  left: -14px;
+  border-style: solid;
+  border-width: 15px 15px 15px 0;
+  border-right-color: #ff502c;
+}
+.box2 span:after {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 15px 15px 15px 15px;
+  border-color:  #ff502c transparent  #ff502c  #ff502c;
+  left: 134px;
+}
+
