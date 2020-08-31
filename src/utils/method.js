@@ -1,10 +1,14 @@
 
-export function treeToList(data=[]) {
+export function treeToList(data=[],delChild=false) {
   let resData=[];
   for(let obj of data){
+    let child = obj.children;
+    if(delChild){
+      delete obj.children;
+    }
     resData.push({...obj});
-    if(obj.children && obj.children.length>0){
-      resData=[...resData,...treeToList(obj.children,resData)]
+    if(child && child.length>0){
+      resData=[...resData,...treeToList(child)]
     }
   }
   return resData;
