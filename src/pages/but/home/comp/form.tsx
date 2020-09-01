@@ -1,5 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { Button, Form, Input, DatePicker } from 'antd';
+import { Form } from '@ant-design/compatible';
+import '@ant-design/compatible/assets/index.css';
+import { Button, Input, DatePicker } from 'antd';
 import _debounce from 'lodash/debounce';
 import { awsl } from '@/pages/services/login'
 const formItemLayout = {
@@ -7,7 +9,6 @@ const formItemLayout = {
   wrapperCol: { span: 16 },
 };
 export default function index(props:any){
-  const [form] = Form.useForm();
   const [ validateStatus, setValidateStatus ] = useState<any>(undefined);
   const onFinish = (values:any) =>{
     console.log(values,'onFinish');
@@ -30,7 +31,6 @@ export default function index(props:any){
       <Form
         {...formItemLayout}
         name="basic"
-        form={form}
         initialValues={{ username: 12333 }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}

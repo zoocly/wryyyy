@@ -9,6 +9,7 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
+    "@ant-design/compatible": "^1.0.5",
     "@types/qs": "^6.9.0",
     "@umijs/hooks": "^1.6.1",
     "antd": "^4.2.0",

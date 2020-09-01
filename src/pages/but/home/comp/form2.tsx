@@ -1,12 +1,13 @@
 import React, { Fragment } from 'react';
-import { Form, Input, Space, Button } from 'antd';
+import { Form } from '@ant-design/compatible';
+import '@ant-design/compatible/assets/index.css';
+import { Input, Space, Button } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 const formItemLayout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 16 },
 };
 export default function index() {
-  const [form] = Form.useForm();
   const onFinish = (values:any) =>{
     console.log(values,'onFinish');
   };
@@ -18,7 +19,6 @@ export default function index() {
       <Form
         {...formItemLayout}
         // name="basic"
-        form={form}
         // initialValues={{ username: 12333 }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}

@@ -1,4 +1,5 @@
 import React, {Fragment, PureComponent} from 'react';
+import { Icon as LegacyIcon } from '@ant-design/compatible';
 import {Avatar, Card, Tooltip} from 'antd';
 import CountUp from 'react-countup';
 import style from './index.less';
@@ -59,7 +60,7 @@ export default function index (props:Interface) {
                       <img src={src} className={style.img}/>
                     </div>
                     :
-                    <Avatar size={64} icon={icon} style={{backgroundColor:`${iconColor}`}}/>
+                    <Avatar size={64} icon={<LegacyIcon type={icon} />} style={{backgroundColor:`${iconColor}`}}/>
                 }
               </Tooltip>
             </div>
@@ -94,5 +95,5 @@ export default function index (props:Interface) {
         </div>
       </div>
     </div>
-  )
+  );
 }
