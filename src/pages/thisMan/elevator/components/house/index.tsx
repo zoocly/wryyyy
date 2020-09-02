@@ -15,7 +15,7 @@ export default function index(props:any) {
     style.innerHTML = runkeyframes;
     document.getElementsByTagName('head')[0].appendChild(style);
     setTimeout(function() {
-      // @ts-ignore
+      // @learnTS-ignore
       document.getElementsByTagName('head')[0].removeChild(document.getElementById('add-style-id'));
     },duringTime*1000)
   };

@@ -1,4 +1,4 @@
-// @ts-ignore
+// @learnTS-ignore
 import request from 'src/utils/request';
 import qs from 'qs';
 export function awsl(params:any) {

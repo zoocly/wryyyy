@@ -67,7 +67,7 @@ function index(props:Interface,ref:any) {
       const res = await action(finalPayload);
       setTableLoading(false);
       // 使用自己或外部配置格式化列表数据
-      // @ts-ignore
+      // @learnTS-ignore
       const { resList = [], resPagination = {...initPagination} } = !_isEmpty(selfConfig) ? selfConfig.getResList(res) : config.getResList(res);
       setList(resList);
       setPagination(resPagination);
@@ -103,7 +103,7 @@ function index(props:Interface,ref:any) {
   };
   const handleOk = () =>{
     // 使用自己或外部配置格式化input显示内容
-    // @ts-ignore
+    // @learnTS-ignore
     let val:string = !_isEmpty(selfConfig) ? selfConfig.inputValue(selectedItems) : config.inputValue(selectedItems);
     setInputValue(val);
     onSubmit && onSubmit(selectedItems);

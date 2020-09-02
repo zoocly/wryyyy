@@ -7,7 +7,7 @@ export default function index() {
     // 节流重在加锁「flag = false」
     if (flagRef.current){
       flagRef.current = false;
-      // @ts-ignore
+      // @learnTS-ignore
       clearTimeout(timerRef.current);
       timerRef.current = undefined;
       setTimeout(()=>{
