@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { Tabs  } from 'antd';
 import UseEffect from './useeffect';
 import UseContext from './useContext';
+import UseState from './useState';
 const { TabPane } = Tabs;
 const index = () =>{
-  const [ tab, setTab ] = useState('2');
+  const [ tab, setTab ] = useState('3');
   const onChange = (key:string) =>{
     setTab(key);
   };
@@ -17,8 +18,8 @@ const index = () =>{
         <TabPane tab="useContext" key="2">
           { tab === '2' &&  <UseContext/>}
         </TabPane>
-        <TabPane tab="Tab 3" key="3">
-          Content of Tab Pane 3
+        <TabPane tab="useState" key="3">
+          { tab === '3' &&  <UseState/>}
         </TabPane>
       </Tabs>
     </div>
