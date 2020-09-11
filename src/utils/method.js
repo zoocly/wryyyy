@@ -8,7 +8,7 @@ export function treeToList(data=[],delChild=false) {
     }
     resData.push({...obj});
     if(child && child.length>0){
-      resData=[...resData,...treeToList(child)]
+      resData=[...resData,...treeToList(child,delChild)]
     }
   }
   return resData;
