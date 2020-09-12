@@ -57,15 +57,19 @@ const Head = (props:any) => {
     return arr;
   };
   const f = (arr:Array<any>) =>{
+    if(_isEmpty(arr)){
+      return arr
+    }
     arr.map(it =>{
-      if(!_isEmpty(it.children) && !_isNumber(it.colSpan)){ // 有子集且colSpan没累积到当前
-        it.children.map( (item:any) =>{
-          if(_isNumber(item.colSpan)){ //发现累加上来的colSpan，累加
-            it.colSpan = _isNumber(it.colSpan) ? it.colSpan + item.colSpan : item.colSpan;
-          }else { // 否则继续深入找colSpan
-            f(it.children)
-          }
-        })
+      if(!_isNumber(it.colSpan) || it.colSpan === 0){  // 没有累加上来的colSpan
+        if(!_isEmpty(it.children)){
+          let num = 0;
+          f(it.children); // 又没累加上来，还有children的，甩下去遍历
+          it.children.map(item => {
+            num += item.colSpan;
+          });
+          it.colSpan = num;
+        }
       }
     });
     return arr;

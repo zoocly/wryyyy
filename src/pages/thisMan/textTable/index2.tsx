@@ -10,6 +10,8 @@ import 'react-datasheet/lib/react-datasheet.css';
 const { Group } = Checkbox;
 const { TreeNode } = Tree;
 
+import { Head, Colgroup } from '@/components/DynamicTableHead';
+
 const checkboxConfig = [
   {title:'单位名称', key:'1'},
   {title:'考核结论', key:'2'},
@@ -17,8 +19,55 @@ const checkboxConfig = [
   {title:'总分', key:'4'},
 ];
 const treeData = [
-  {title:'民主测评', key:'5' ,parent:'-1' ,children:[{title:'对党忠诚', key:'51',parent:'5'}, {title:'抓落实促发展', key:'52',parent:'5'}, {title:'敢抓敢管勇于负责', key:'53',parent:'5'}]},
-  {title:'好干部标准评价', key:'6',parent:'-1', children:[{title:'对党忠诚11', key:'61',parent:'6'},]},
+  {
+    title:'民主测评',
+    key:'5' ,
+    parent:'-1' ,
+    children:[
+    {
+      title:'对党忠诚',
+      key:'51',
+      parent:'5',
+      children:[
+        {
+          title:'对党忠诚',
+          key:'511',
+          parent:'51',
+          children:[
+            {title:'对党忠诚', key:'5111',parent:'511'},
+            {
+              title:'对党忠诚22222',
+              key:'5112',
+              parent:'511',
+              children:[
+                {title:'ff阿萨德', key:'51121',parent:'5112'},
+                {title:'他他他他他他', key:'51122',parent:'5112'}
+              ]
+            }
+            ]
+        },
+        {title:'抓落实促发展', key:'521',parent:'51'},
+        {title:'敢抓敢管勇于负责', key:'531',parent:'51'}
+        ]},
+      {title:'抓落实促发展', key:'52',parent:'5'},
+      {title:'敢抓敢管勇于负责', key:'53',parent:'5'}]},
+  {
+    title:'好干部标准评价',
+    key:'6',
+    parent:'-1',
+    children:[
+      {title:'对党忠诚11', key:'61',parent:'6'},
+      {
+        title:'顺丰到付',
+        key:'62',
+        parent:'6',
+        children:[
+          {title:'ff阿萨德', key:'621',parent:'62'},
+          {title:'纷纷', key:'622',parent:'62'}
+        ]
+      },
+      {title:'嘎嘎嘎嘎', key:'63',parent:'6'},
+    ]},
 ];
 export default function index() {
   const [ check, setCheck ] = useState<any>([]);
@@ -87,37 +136,40 @@ export default function index() {
 
     setFinalConfig([...part1,...part2]);
 
-    let length = part2.reduce((total, it)=> total + _get(it,'children.length',1),0);
-    let gird = [ new Array(part1.length+length).fill('').map(() => { return {value:' '} })];
-    setFakeGrid(gird);
+    // let length = part2.reduce((total, it)=> total + _get(it,'children.length',1),0);
+    // let gird = [ new Array(part1.length+length).fill('').map(() => { return {value:' '} })];
+    // setFakeGrid(gird);
 
   },[check,select]);
 
-  const configHead = (
-    <thead>
-    <tr>
-      {
-        finalConfig.map((it, index)=> <td key={index} rowSpan={_isEmpty(it.children) ? 2 : 1 } colSpan={ _isEmpty(it.children) ? 0 : it.children.length } >{it.title}</td> )
-      }
-    </tr>
-    <tr>
-      {
-        finalConfig.map(it=>{
-          if(!_isEmpty(it.children)){
-            return it.children.map((it, index)=><td key={index}>{it.title}</td>)
-          }
-        })
-      }
-    </tr>
-    </thead>
-  );
-  const colgroup = (
-    <colgroup>
-      {
-        new Array(_get(fakeGird,'[0].length',1)).fill('').map((i, index) => <col key={index} style={{width: 100}}/>)
-      }
-    </colgroup>
-  );
+  // const configHead = (
+  //   <thead>
+  //   <tr>
+  //     {
+  //       finalConfig.map((it, index)=> <td key={index} rowSpan={_isEmpty(it.children) ? 2 : 1 } colSpan={ _isEmpty(it.children) ? 0 : it.children.length } >{it.title}</td> )
+  //     }
+  //   </tr>
+  //   <tr>
+  //     {
+  //       finalConfig.map(it=>{
+  //         if(!_isEmpty(it.children)){
+  //           return it.children.map((it, index)=><td key={index}>{it.title}</td>)
+  //         }
+  //       })
+  //     }
+  //   </tr>
+  //   </thead>
+  // );
+  // const colgroup = (
+  //   <colgroup>
+  //     {
+  //       new Array(_get(fakeGird,'[0].length',1)).fill('').map((i, index) => <col key={index} style={{width: 100}}/>)
+  //     }
+  //   </colgroup>
+  // );
+
+  // console.log(finalConfig,'finalConfig')
+
   return (
     <div>
       <div>当前序列:xxxxx</div>
@@ -133,8 +185,8 @@ export default function index() {
           !_isEmpty(finalConfig) &&
             <Fragment>
               <table>
-                {configHead}
-                {colgroup}
+                <Head tree={finalConfig} nodeName={'title'} stepFunc={ it => it.key.length - 1 }/>
+                <Colgroup tree={finalConfig}/>
               </table>
               <ReactDataSheet
                 style={{width:'100%'}}
@@ -143,7 +195,7 @@ export default function index() {
                 sheetRenderer={(props:any) => {
                   return (
                     <table>
-                      {colgroup}
+                      <Colgroup tree={finalConfig}/>
                       <tbody>{props.children}</tbody>
                     </table>
                   );
