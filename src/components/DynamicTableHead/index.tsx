@@ -1,12 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo, Fragment } from 'react';
 import _isEmpty from 'lodash/isEmpty';
 import _cloneDeep from 'lodash/cloneDeep';
 import _isNumber from 'lodash/isNumber';
 import _get from 'lodash/get';
 import { treeToList } from '@/utils/method.js';
-const Colgroup = (props:any) =>{
-  const { tree, nodeWith = 100 } = props;
-  // 增加一行空白栏
+const fakeLine = (arr:Array<any>) =>{
   let num = 0;
   const addNum = (arr:Array<any>) =>{
     arr.map(it =>{
@@ -18,13 +16,27 @@ const Colgroup = (props:any) =>{
     });
     return num;
   };
-  let gird = [ new Array(addNum(tree)).fill('').map(() => { return {value:' '} })];
+  return addNum(arr);
+};
+const Colgroup = (props:any) =>{
+  const { tree, nodeWith = 100 } = props;
+  let num = fakeLine(tree);
+  let gird = [ new Array(num).fill('').map(() => { return {value:' '} })];
   return (
-    <colgroup>
+    <Fragment>
       {
-      new Array(_get(gird,'[0].length',1)).fill('').map((i, index) => <col key={index} style={{width: nodeWith}}/>)
+        useMemo(() => {
+          return (
+            <colgroup>
+              {
+                new Array(_get(gird,'[0].length',1)).fill('').map((i, index) => <col key={index} style={{width: nodeWith}}/>)
+              }
+            </colgroup>
+          )
+        }, [num])
       }
-    </colgroup>
+    </Fragment>
+
   )
 };
 const Head = (props:any) => {
@@ -136,5 +148,5 @@ const Head = (props:any) => {
     </thead>
   )
 };
-export  { Head, Colgroup };
+export  { Head, Colgroup, fakeLine };
 

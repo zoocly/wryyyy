@@ -10,7 +10,7 @@ import 'react-datasheet/lib/react-datasheet.css';
 const { Group } = Checkbox;
 const { TreeNode } = Tree;
 
-import { Head, Colgroup } from '@/components/DynamicTableHead';
+import { Head, Colgroup, fakeLine } from '@/components/DynamicTableHead';
 
 const checkboxConfig = [
   {title:'单位名称', key:'1'},
@@ -136,39 +136,10 @@ export default function index() {
 
     setFinalConfig([...part1,...part2]);
 
-    // let length = part2.reduce((total, it)=> total + _get(it,'children.length',1),0);
-    // let gird = [ new Array(part1.length+length).fill('').map(() => { return {value:' '} })];
-    // setFakeGrid(gird);
+    let gird = [ new Array(fakeLine([...part1,...part2])).fill('').map(() => { return {value:' '} })];
+    setFakeGrid(gird);
 
   },[check,select]);
-
-  // const configHead = (
-  //   <thead>
-  //   <tr>
-  //     {
-  //       finalConfig.map((it, index)=> <td key={index} rowSpan={_isEmpty(it.children) ? 2 : 1 } colSpan={ _isEmpty(it.children) ? 0 : it.children.length } >{it.title}</td> )
-  //     }
-  //   </tr>
-  //   <tr>
-  //     {
-  //       finalConfig.map(it=>{
-  //         if(!_isEmpty(it.children)){
-  //           return it.children.map((it, index)=><td key={index}>{it.title}</td>)
-  //         }
-  //       })
-  //     }
-  //   </tr>
-  //   </thead>
-  // );
-  // const colgroup = (
-  //   <colgroup>
-  //     {
-  //       new Array(_get(fakeGird,'[0].length',1)).fill('').map((i, index) => <col key={index} style={{width: 100}}/>)
-  //     }
-  //   </colgroup>
-  // );
-
-  // console.log(finalConfig,'finalConfig')
 
   return (
     <div>
