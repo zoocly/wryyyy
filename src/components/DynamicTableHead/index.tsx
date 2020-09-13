@@ -37,7 +37,7 @@ const Head = (props:any) => {
     let max = 0;
     if(_isEmpty(arr)){
       return 0
-    };
+    }
     arr.map(it=>{
       let count = maxDeep(it.children);
       if(max < count){
@@ -65,7 +65,7 @@ const Head = (props:any) => {
         if(!_isEmpty(it.children)){
           let num = 0;
           f(it.children); // 又没累加上来，还有children的，甩下去遍历
-          it.children.map(item => {
+          it.children.map((item:any) => {
             num += item.colSpan;
           });
           it.colSpan = num;
