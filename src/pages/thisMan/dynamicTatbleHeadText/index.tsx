@@ -1,14 +1,7 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react';
-import _isEmpty from 'lodash/isEmpty';
-import _isNumber from 'lodash/isNumber';
-import _cloneDeep from 'lodash/cloneDeep';
-import _last from 'lodash/last';
-import { treeToList } from '@/utils/method.js';
-import { Head, Colgroup } from '@/components/DynamicTableHead';
+import { Head, Colgroup } from '../../../components/DynamicTableHead';
 import ReactDataSheet from 'react-datasheet';
 import 'react-datasheet/lib/react-datasheet.css';
-import { Tree } from 'antd';
-const { TreeNode } = Tree;
 const index = (props:any) =>{
   const res = {
     "code": 0,
