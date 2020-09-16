@@ -1,23 +1,28 @@
 import _isEqual from 'lodash/isEqual';
+
 class Node {
   constructor(element) {
     this.element = element;
-    this.next = undefined;
+    this.next = null;
+    this.prior = null;
   }
 }
-export default class LinkedList {
-  constructor() {
+export default class LinkedList2 {
+  constructor(){
     this.count = 0; // 存储链表数量
-    this.head = undefined; // 第一个元素
+    this.head = null; // 第一个元素
+    this.tail = null; // 最后一个元素
   }
-
   push(element) {
     const node = new Node(element);
-    if(this.head === undefined){
+    if(this.head === null){
       this.head = node;
+      this.tail = node;
     }else {
-      let last = this.getElementAt(this.count);
+      let last = this.tail;
       last.next = node;
+      node.prior = last;
+      this.tail = node;
     }
     this.count++;
   } // 向链表尾部添加一个新元素
@@ -27,7 +32,10 @@ export default class LinkedList {
     let index = position - 1;
     let previous = this.getElementAt(index);
     let next = previous.next;
+
     previous.next = node;
+    next.prior = node;
+    node.prior = previous;
     node.next = next;
     this.count++;
   } // 向链表特定位置插入一个新元素
@@ -37,7 +45,7 @@ export default class LinkedList {
       let node = this.head;
       if(index !== 0){
         for(let i = 0; i < index && node.next != null; i++){
-            node = node.next;
+          node = node.next;
         }
       }
       return node
@@ -65,6 +73,7 @@ export default class LinkedList {
     }
     return -1;
   } // 返回元素在链表中的索引，没有则返回-1
+
   removeAt(position) {
     let p = position - 1;
     if(p >= 0 && p <= this.count){
@@ -72,9 +81,16 @@ export default class LinkedList {
       if(p === 0){
         this.head = node.next;
       }else {
-        let previous = this.getElementAt(p - 1);
-        let last = previous.next;
-        previous.next = last.next;
+        // let previous = this.getElementAt(p - 1);
+        // let last = previous.next;
+        // previous.next = last.next;
+
+        let now = this.getElementAt(p);
+        let pre = now.prior;
+        let next = now.next;
+
+        pre.next = next;
+        next.prior = pre;
       }
       this.count--;
     }else {
@@ -88,5 +104,4 @@ export default class LinkedList {
     return this.count;
   } // 返回链表包含的元素个数
   toString() {} // 返回整个链表的字符串
-};
-
+}
