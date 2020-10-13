@@ -1,5 +1,17 @@
-import React from 'react';
+import React, {useRef, useState} from 'react';
+import styles from './index.less';
 export default function index() {
+  const boxRef = useRef();
+  const [ isShow, setIsShow ] = useState(0);
+  const onClick = () =>{
+    if(isShow === 0){
+      setIsShow(1);
+    }else if(isShow === 1) {
+      setIsShow(2);
+    }else if(isShow === 2) {
+      setIsShow(1);
+    }
+  };
   return (
     <div>
       <video src="rtmp://58.200.131.2:1935/livetv/cctv1"
@@ -19,6 +31,13 @@ export default function index() {
       >
         your browser does not support the video tag
       </video>
+
+      <div className={`${styles.box} ${isShow === 1 && styles.open} ${isShow === 2 && styles.hid}`} ref={boxRef}>
+        <div style={{width:100,wordBreak:'break-all'}}>
+          12333333423424
+        </div>
+        <button onClick={onClick} className={styles.btn}>move</button>
+      </div>
     </div>
   )
 }

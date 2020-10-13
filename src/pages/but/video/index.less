@@ -1,0 +1,28 @@
+.box {
+  position: absolute;
+  left: -100px;
+  top:200px;
+  width: 106px;
+  height: 100px;
+  background: darkred;
+}
+.btn {
+  position: absolute;
+  left:106px;
+  top:0;
+}
+.open {
+  animation:ball-run;
+  animation-duration:0.5s;
+  animation-iteration-count:1;
+  animation-fill-mode:forwards;
+}
+@keyframes ball-run{0%{left: -100px;}100%{left: 0px;}}
+
+.hid {
+  animation:ball-run2;
+  animation-duration:0.5s;
+  animation-iteration-count:1;
+  animation-fill-mode:forwards;
+}
+@keyframes ball-run2{0%{left: 0;}100%{left: -100px;}}
