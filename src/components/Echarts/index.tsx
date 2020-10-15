@@ -1,4 +1,5 @@
 // @learnTS-ignore
+// @ts-ignore
 import echarts from "echarts";
 import React, { useRef } from 'react';
 import ReactEchartsCore from "echarts-for-react/lib/core";
