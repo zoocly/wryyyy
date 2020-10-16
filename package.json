@@ -21,7 +21,7 @@
     "lodash": "^4.17.15",
     "qs": "^6.9.1",
     "react": "^16.8.6",
-    "react-countup": "^4.3.2",
+    "react-countup": "^4.3.3",
     "react-datasheet": "^1.4.1",
     "react-dom": "^16.8.6",
     "typescript": "^3.8.3"

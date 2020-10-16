@@ -6,6 +6,10 @@ export default function() {
     sessionStorage.setItem('openKeys','001');
     sessionStorage.setItem('keys','001.001');
   },[]);
-  return <Redirect to={`/but/home`}/>;
+  return (
+    <div>
+      <Redirect to={`/but/home`}/>
+    </div>
+  );
 }
 

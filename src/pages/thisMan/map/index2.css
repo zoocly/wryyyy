@@ -1,0 +1,38 @@
+.tip {
+  position: relative;
+  padding: 6px;
+  top: 46px;
+  background-color: #1F5D8280;
+  border: 1px solid #04909A;
+  margin: 20px auto;
+  border-radius: 10px;
+  font-family: sans-serif;
+}
+.tip:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+
+  border: 8px solid;
+}
+.bottom:after {
+  border-color: #ffffff00;
+  border-top-color: #04909A;
+  top: 100%;
+  left: 50%;
+  margin-left: -15px;
+}
+
+.name {
+  color: #05BFE9;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.info {
+  margin-bottom: 10px;
+}
+.info span {
+  color: #F7DA2B;
+}
+
