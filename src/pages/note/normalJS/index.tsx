@@ -9,19 +9,24 @@ const index = () =>{
   return (
     <div>
       <h1>原生JS 与 ES6的区别 笔记</h1>
+
       <Divider orientation={'left'}>for循环中的小知识</Divider>
       原生js中的for循环。 break为跳出该循环，continue 为跳出该次循环，循环还是要继续。<br/>
       如果使嵌套for循环，想要用break跳出全部循环，则需要使用label标签，在最外层循环写上自定义label xxx<br/>
       在想要跳出循环的地方 写 break xxx
+
       <Divider orientation={'left'}>function</Divider>
       普通函数和箭头函数的传参不一样：<br/>
       普通函数在小括号不写参数，在函数体也可以使用arguments的数组来代替，但箭头函数必传，虽然有arguments但是没想要的参数，如图<br/>
       <img src={require('@/assets/function.png')}/>
+
       <Divider orientation={'left'}>复制变量</Divider>
       <a onClick={turnToDeep}>原来的深浅复制</a>
+      
       <Divider orientation={'left'}>作用域</Divider>
       原生js var是没有块作用域的（ps:块作用域就是有｛｝包住的部分）这样会很容易出错<br/>
       但是ES6中的let 和 const 是有的块作用域
+
       <Divider orientation={'left'}>数组</Divider>
       章节 5.2.2 转换方法 toString，书上介绍的方法和浏览器自己写的，结果不一样，不知道原因。<br/>
       栈方法<br/>
@@ -32,6 +37,44 @@ const index = () =>{
       unshift 和 shift 都是在数组最前端做操作， 前者从最前放入N个元素， 后者为删除最前的一个元素<br/>
       若用一个变量接受 unshift 为当前长度， shift 为被删除元素。 注意：使用此方法，原数组已被修改<br/>
       栈方法的访问规则是 先进先出<br/>
+
+      <Divider orientation={'left'}>构造函数</Divider>
+      构造函数也是一般的函数，但是开头是大写，调用构造函数会经过4步<br/>
+      1.创建一个新对象<br/>
+      2.将this指向新对象（将构造函数的作用域赋给新对象）<br/>
+      3.执行函数体的内容<br/>
+      4.返回新对象<br/>
+      例如：<br/>
+      const person1 = new Person(); const person2 = new Person();<br/>
+      person1 和 person2 的 constructor，都指向Person： person1.constructor = Person; person2.constructor = Person;<br/>
+      但是构造函数有缺点，若Person中包含方法a，那么person1.a === person2.a // false （2个方法a并不是同一个Function的实例）<br/>
+      原因是因为在执行构造函数的内容时，会申明一个新的方法（new Function()）,虽然在逻辑上是等价的，但是实质不一样
+
+      <Divider orientation={'left'}>继承</Divider>
+      js的继承主要是依靠原型链来继承的，其中分为了几种继承方式，分别是<br/>
+      1.原型链继承：<br/>
+      sub.prototype = new Sup() sub的原型对象是sup的构造函数Sup<br/>
+      可以在子类实例中看到继承的父级<br/>
+      缺点：子修改被继承的数据，子2也会相应的被修改。<br/>
+      2.构造函数继承(经典继承)：<br/>
+      在子中使用apply() 或 call() 来执行父的构造函数，可以解决 1 中的缺点<br/>
+      此方法并不那个能在子类实例的__proto__中呈现继承的父级，也就是说 子类实例直接继承Object了<br/>
+      缺点：无法函数复用。在超类型的原型中定义方法，无法在子类中不可见<br/>
+      3.组合继承(伪经典继承):<br/>
+      将原型链和构造函数组合，也就是将 1 和 2 组合使用。可以解决 2 中的缺点<br/>
+      可以在子类实例中看到继承的父级<br/>
+      缺点：会调用2次构造函数 第一次：Sub.prototype = new Sup()。第二次：Sup.call(this)<br/>
+      4.原型式继承<br/>
+      创建一个方法a，在方法里面创建临时构造函数F()，F.prototype = 方法传入的对象obj，最后return new F(); <br/>
+      不能在子类实例中看到继承的父级<br/>
+      缺点：使用a创建的对象将obj作为原型，obj的属性将被子类共享以，若子1 修改属性，obj和子2都会被修改属性（相当于是浅复制）<br/>
+      5.寄生式继承<br/>
+      由 4 升级而成，创建方法a，方法里克隆obj，添加属性，返回克隆对象。<br/>
+      缺点：不能函数复用<br/>
+      6.寄生组合继承<br/>
+      通过构造函数来继承属性，通过原型链来继承方法<br/>
+      创建方法f，传入sub和sup，let aa = 使用 4 中的方法a(sup.prototype); aa.constructor = sub; sub.prototype = aa;<br/>
+      可以在子类实例中看到继承的父级<br/>
     </div>
   )
 };
