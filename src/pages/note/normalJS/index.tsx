@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
 import { Divider } from 'antd';
-import { history } from 'umi';
+import { history as umiHistory } from 'umi';
 
 const index = () =>{
   const turnToDeep = () =>{
-    history.push('/note/deep')
+    umiHistory.push('/note/deep')
   };
   return (
     <div>
@@ -22,7 +22,7 @@ const index = () =>{
 
       <Divider orientation={'left'}>复制变量</Divider>
       <a onClick={turnToDeep}>原来的深浅复制</a>
-      
+
       <Divider orientation={'left'}>作用域</Divider>
       原生js var是没有块作用域的（ps:块作用域就是有｛｝包住的部分）这样会很容易出错<br/>
       但是ES6中的let 和 const 是有的块作用域
@@ -75,6 +75,28 @@ const index = () =>{
       通过构造函数来继承属性，通过原型链来继承方法<br/>
       创建方法f，传入sub和sup，let aa = 使用 4 中的方法a(sup.prototype); aa.constructor = sub; sub.prototype = aa;<br/>
       可以在子类实例中看到继承的父级<br/>
+
+      <Divider orientation={'left'}>BOM</Divider>
+      移动窗口和重新设置窗口大小 window.resizeTo() window.moveTo() 没效果
+      窗口大小<br/>
+      window.innerWidth   实际浏览器内容宽  window.outerWidth   实际浏览器宽度<br/>
+      window.innerHeight  实际浏览器内容高  window.outerHeight  实际浏览器高度<br/>
+      在ie8之前，使用DOM中的 document.documentElement.clientHeight 实际内容高 document.documentElement.clientWidth 实际内容宽<br/>
+      跳转新窗口<br/>
+      let a = window.open(); 若a == null， 则说明浏览器拦截了弹出式窗口<br/>
+      setTimeOut定时器可以牵扯到队列宏任务微任务以及promise().then()的顺序<br/>
+      使用定时器可以用作前端防抖和限流的应用当中<br/>
+      BOM中还有2个对象，分别是screen和history，浏览器自带的这2个对象的用处不是很大<br/>
+      但是现在前端框架大都自己会封装history，比如umi的history路由跳转和取url上面的参数等<br/>
+      还有一个navigator，是来查看浏览器参数和版本等等<br/>
+
+      <Divider orientation={'left'}>DOM</Divider>
+      原生JS和使用JQ的JS，改变数据都是通过DOM来更改的HTML，不像现在react和vue的前端框架使用数据来驱动页面的变化<br/>
+      因为操作DOM来更改页面，消耗的性能代价太大，所以被现在框架舍弃。<br/>
+      如果想知道一个节点是不是元素（分为12种节点，元素节点的值为1），可以使用someNode.nodeType == 1 来判断<br/>
+      DOM中很多操作，都可以使用jq来替换使用，所以接下来可以看JQ的东西来补充。<br/>
+      DOM2 和 DOM3 是扩展DOM的API：<br/>
+      在DOM2中，可以使用 元素.style.color = 'red' 来对css进行控制
     </div>
   )
 };
