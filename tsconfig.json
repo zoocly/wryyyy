@@ -9,6 +9,7 @@
     "sourceMap": true,
     "baseUrl": ".",
     "strict": true,
+    //自定义简写引用路由
     "paths": {
       "@/*": ["src/*"],
       "components/*": ["src/components/*"],

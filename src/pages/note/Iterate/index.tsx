@@ -55,6 +55,13 @@ export default function index() {
       <h1><code>for...of</code> 对 obj map set str arr 的遍历</h1>
       {doSth()}
       <img src={require('@/assets/NotRecommended.png')}/>
+      <Divider orientation={'left'}>关于数据多了，使用filter筛选的小优化</Divider>
+      <div>
+        <img src={require('@/assets/filter1.png')} />
+        <img src={require('@/assets/filter2.png')}/>
+      </div>
+      这样写的复杂程度是O(n^2),平时自己写筛选会这样。但是如果另外一种写法复杂度就从O(n^2)变成了O(2n)<br/>
+      利用hash表思想解决这个问题，因为js里面有一个天然的hash表结构就是对象。是一个典型的空间换时间的例子
     </Fragment>
   )
 }

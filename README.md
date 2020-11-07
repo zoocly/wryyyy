@@ -1,2 +1,2 @@
 # wryyyy
-ko no dio da
+就练手 很怪

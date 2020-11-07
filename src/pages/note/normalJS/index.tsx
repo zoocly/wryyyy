@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { Divider } from 'antd';
 import { history as umiHistory } from 'umi';
+import DLC from '../dlc';
 
 const index = () =>{
   const turnToDeep = () =>{
@@ -97,6 +98,7 @@ const index = () =>{
       DOM中很多操作，都可以使用jq来替换使用，所以接下来可以看JQ的东西来补充。<br/>
       DOM2 和 DOM3 是扩展DOM的API：<br/>
       在DOM2中，可以使用 元素.style.color = 'red' 来对css进行控制
+      <DLC/>
     </div>
   )
 };
