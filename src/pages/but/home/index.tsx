@@ -2,6 +2,7 @@ import React from 'react';
 import Cards from 'components/OverViewCard';
 import FormComp from './comp/form';
 import FormComp2 from './comp/form2';
+import $ from 'jquery';
 import _set from 'lodash/set';
 import _get from 'lodash/get';
 import {cardConfig, chartConfig} from './config';
@@ -14,6 +15,7 @@ export default class index extends React.Component<any,any> {
     };
   }
   componentDidMount() {
+    console.log($('#jq'), 'aaaa');
     /*
     *
     * 1、第一次和第二次都是在 react 自身生命周期内，触发时 isBatchingUpdates 为 true，所以并不会直接执行更新 state，而是加入了 dirtyComponents，所以打印时获取的都是更新前的状态 0。
@@ -46,6 +48,7 @@ export default class index extends React.Component<any,any> {
                {/*chartConfig={chartConfig}*/}
                {/*chartType={'memOverview'}*/}
         {/*/>*/}
+        <div id={'jq'}>1233</div>
         <FormComp/>
         <FormComp2/>
       </div>
