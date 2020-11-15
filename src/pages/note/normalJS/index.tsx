@@ -21,6 +21,11 @@ const index = () =>{
       普通函数在小括号不写参数，在函数体也可以使用arguments的数组来代替，但箭头函数必传，虽然有arguments但是没想要的参数，如图<br/>
       <img src={require('@/assets/function.png')}/>
 
+      箭头函数和普通函数的this不一样：<br/>
+      es5 中的this，永远指向最后调用它的那个对象。<br/>
+      箭头函数中的this，箭头函数的 this 始终指向函数定义时的 this，而非执行时（会往上一直找，找到离他最近的this，来当作箭头函数的this）<br/>
+      箭头函数中的this，会改变原本this指向，可以理解成call改变this一样（只是单纯的改变了this的指向，原理并不一样）
+
       <Divider orientation={'left'}>复制变量</Divider>
       <a onClick={turnToDeep}>原来的深浅复制</a>
 
