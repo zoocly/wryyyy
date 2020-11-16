@@ -65,29 +65,25 @@ const Head = (props: any) => {
     });
     return max + 1;
   };
-  const addNum = (arr: Array<any>) => {
-    arr.map(it => {
-      if (_isEmpty(it.children)) {
-        it.colSpan = 1;
-      } else {
-        addNum(it.children);
-      }
-    });
-    return arr;
-  };
   const f = (arr: Array<any>) => {
     if (_isEmpty(arr)) {
       return arr;
     }
     arr.map(it => {
-      if (!_isNumber(it.colSpan) || it.colSpan === 0) {  // 没有累加上来的colSpan
-        if (!_isEmpty(it.children)) {
-          let num = 0;
+      if (!_isNumber(it.colSpan)) {
+        if (_isEmpty(it.children)) {
+          it.colSpan = 1;
+        } else {
+          if (it.children.length >= 2) { //在进入递归之前可以把增加额外的东西
+            it.children.unshift({
+              'k0501': it.k0501 + '00',
+              'k0505': '小计',
+            });
+          }
           f(it.children); // 又没累加上来，还有children的，甩下去遍历
-          it.children.map((item: any) => {
-            num += item.colSpan;
-          });
-          it.colSpan = num;
+          it.colSpan = it.children.reduce((all: number, item: { colSpan: 0 }) => {
+            return all + item.colSpan;
+          }, 0);
         }
       }
     });
@@ -95,12 +91,14 @@ const Head = (props: any) => {
   };
   const fc = (arr: Array<any>) => {
     arr.map(it => {
+      const step = stepFunc(it);
       if (!_isEmpty(it.children)) {
         it.rowSpan = 1;
+        it.step = step;
         fc(it.children);
       } else {
-        // it.rowSpan = depthRef.current - it[nodeKey].length/2 + 1 ;
-        it.rowSpan = depthRef.current - stepFunc(it);
+        it.step = step;
+        it.rowSpan = depthRef.current - step;
       }
     });
     return arr;
@@ -119,19 +117,14 @@ const Head = (props: any) => {
 
   useEffect(() => {
     let _data = _cloneDeep(tree);
-    // 树深度
-    let depth = maxDeep(_data);
-    depthRef.current = depth;
+
+    // 树最大深度
+    depthRef.current = maxDeep(_data);
     // 加上rowSpan和colSpan
-    _data = addNum(_data);
-    for (let i = 0; i < depth - 1; i++) {
-      _data = f(_data);
-    }
-    _data = fc(_data);
+    _data = fc(f(_data));
     // 平铺树，按层级分组
-    let teamArr = groupBy(treeToList(_cloneDeep(_data), true).map((it: any) => {
-      return { ...it, step: stepFunc(it) };
-    }), 'step');
+    let teamArr = groupBy(treeToList(_data, true), 'step');
+
     setTeam(teamArr);
     return () => {
       setTeam([]);
