@@ -76,5 +76,5 @@ function index(props:any) {
     </div>
   );
 }
-// @learnTS-ignore
+// @ts-ignore
 export default connect(({login})=>({login}))(index);

@@ -26,7 +26,7 @@ const index = () =>{
       箭头函数中的this，箭头函数的 this 始终指向函数定义时的 this，而非执行时（会往上一直找，找到离他最近的this，来当作箭头函数的this）<br/>
       箭头函数中的this，会改变原本this指向，可以理解成call改变this一样（只是单纯的改变了this的指向，原理并不一样）
 
-      <Divider orientation={'left'}>复制变量</Divider>
+      <Divider orientation={'left'}>复制变量</Divider>h
       <a onClick={turnToDeep}>原来的深浅复制</a>
 
       <Divider orientation={'left'}>作用域</Divider>
