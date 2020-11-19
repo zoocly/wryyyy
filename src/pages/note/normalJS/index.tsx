@@ -109,6 +109,7 @@ const index = () => {
       DOM2 和 DOM3 是扩展DOM的API：<br />
       在DOM2中，可以使用 元素.style.color = 'red' 来对css进行控制
       <DLC />
+
     </div>
   );
 };

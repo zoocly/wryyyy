@@ -11,7 +11,7 @@ function parseJSON(response) {
       response
         .json()
         .then(json => {
-          json._SERVER_URL = response.url;
+          json._ERVER_URL = response.url;
           resolve(json);
         })
         .catch(error => {
