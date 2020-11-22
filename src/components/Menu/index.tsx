@@ -13,7 +13,12 @@ function index(props:any) {
   useEffect(()=>{
     props.dispatch({
       type:'login/getMenu',
-      payload:{}
+      payload:{
+        payload:{},
+        callback:(val:any)=>{
+          console.log(val);
+        }
+      }
     });
   },[]);
   useEffect(()=>{
