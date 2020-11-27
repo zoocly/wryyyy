@@ -9,7 +9,22 @@ export default function() {
     /*
     * 一种自适应的方式
     * 动态设置根fontSize的大小，适配rem
-    * clientWidth / 100 = 1X = 1rem
+    * fontSize = clientWidth / 100 = 1X = 1rem
+    * 某一元素在当前页面中要写的rem = 元素的在效果图的px / fontSize
+    * 这个元素在当前页面中的真实px = fontSize * xx rem
+    *
+    * UE图宽度	UE图中元素宽度
+    * 640px	  100px
+    * 480px	  75px
+    *
+    * 在640宽度中 则 fontSize = 640 / 100  = 6.4px
+    * 元素宽度 = 100/6.4 = 15.625rem
+    *
+    * 在640宽度中 则 fontSize = 480 / 100  = 4.8px
+    * 元素宽度 = 75/4.8 = 15.625rem
+    *
+    * 所以元素写 15.625rem 就适配以上屏幕
+    *
     * */
     // window.onresize = ()=>{
     //   console.log(document.documentElement.style.fontSize);
