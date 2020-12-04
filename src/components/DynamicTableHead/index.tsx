@@ -51,7 +51,6 @@ const Head = (props: any) => {
   } = props;
   const depthRef = useRef(0);
   const [team, setTeam] = useState<Array<any>>([]);
-
   const maxDeep = (arr: Array<any>) => {
     let max = 0;
     if (_isEmpty(arr)) {
