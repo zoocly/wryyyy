@@ -1,6 +1,9 @@
 import React from 'react';
 import {Divider} from 'antd';
 import './index.less';
+import Clock from '@/components/LJClock';
+import { AlipayCircleOutlined } from '@ant-design/icons';
+
 
 const index = () => {
   const onClick = () =>{
@@ -8,6 +11,22 @@ const index = () => {
   };
   return (
     <div>
+      <div className='card3DBox'>
+        <div className='card3D'>
+          <div className='imgs'>
+            <AlipayCircleOutlined style={{fontSize:'60px',color:'white'}}/>
+            <div className='tit'>标题</div>
+          </div>
+          <div className='main'>
+            <div>
+              这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容
+            </div>
+          </div>
+        </div>
+        <div className='shadow'/>
+      </div>
+      <Divider orientation={'left'}>钟</Divider>
+      <Clock/>
       <div id="container">
         <div id="div1"/>
         <div id="div2" onClick={onClick}/>
