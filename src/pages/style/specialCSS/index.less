@@ -1,3 +1,37 @@
+.hover2 {
+  position: relative;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  > div {
+    &:hover .info {
+      opacity: 1;
+      visibility: visible;
+      height: 40px;
+    }
+    .tit {
+      width: 100px;
+      height: 30px;
+      border: 1px solid red;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .info{
+      opacity: 0;
+      visibility: hidden;
+      transition-duration: 0.5s;
+      height: 0;
+      width: 100px;
+      overflow: hidden;
+      border: 1px solid blue;
+    }
+  }
+
+}
+
 .card3DBox {
   position: relative;
   z-index: 0;
@@ -12,6 +46,7 @@
     flex-direction: column;
     z-index: 2;
     transition-duration: 0.5s;
+
     .imgs {
       &::before {
         content: '';
@@ -78,6 +113,7 @@
       transform: translateY(-10px);
       cursor: pointer;
     }
+
     &:hover + .shadow {
       visibility: hidden;
       opacity: 0;

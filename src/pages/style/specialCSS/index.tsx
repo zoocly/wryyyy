@@ -11,6 +11,18 @@ const index = () => {
   };
   return (
     <div>
+      <Divider orientation={'left'}>悬浮特效2</Divider>
+      <div className='hover2'>
+        <div>
+          <div className='tit'>
+            123
+          </div>
+          <div className='info'>
+            3456
+          </div>
+        </div>
+      </div>
+      <Divider orientation={'left'}>3D卡片</Divider>
       <div className='card3DBox'>
         <div className='card3D'>
           <div className='imgs'>
