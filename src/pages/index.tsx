@@ -25,6 +25,11 @@ export default function() {
     *
     * 所以元素写 15.625rem 就适配以上屏幕
     *
+    *  rem x fontSize = 当前元素宽度width
+    *  若知道 rem ， 则 width / rem , 得 fontSize
+    *  根据 document.documentElement.clientWidth / x  =  fontSize;
+    *  则能算出不同屏幕中，适配参数 x
+    *
     * */
     // window.onresize = ()=>{
     //   console.log(document.documentElement.style.fontSize);
@@ -34,7 +39,7 @@ export default function() {
   },[]);
   return (
     <div>
-      <Redirect to={`/but/home`}/>
+      <Redirect to={`/note/deep`}/>
     </div>
   );
 }
