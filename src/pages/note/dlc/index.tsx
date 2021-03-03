@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Divider } from 'antd';
+import { history as _history} from '@@/core/history';
+import DLC2 from './dlc2';
 const index = () =>{
+  const {haha} = sessionStorage;
+  useEffect(()=>{
+    console.log(haha,'ssss');
+  },[haha]);
   return (
     <div>
       <Divider orientation={'left'}>地址栏输入url 发生了什么</Divider>
@@ -23,6 +29,13 @@ const index = () =>{
 
 
       Object.defineProperty()为vue响应式的核心。
+      <div>
+        <button onClick={()=>{
+          sessionStorage.setItem('haha','结论是在useEffect是无法监听sessionStorage和localStorage的变化的'+new Date().valueOf());
+          _history.push('?');
+        }}>点我发session</button>
+      </div>
+      <DLC2 val={haha}/>
     </div>
   )
 };
