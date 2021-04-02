@@ -3,7 +3,6 @@ import _isEmpty from 'lodash/isEmpty';
 import _cloneDeep from 'lodash/cloneDeep';
 import _isNumber from 'lodash/isNumber';
 import _get from 'lodash/get';
-import { treeToList } from '@/utils/method.js';
 
 const fakeLine = (arr: Array<any>) => {
   let num = 0;
@@ -33,7 +32,7 @@ const Colgroup = (props: any) => {
             <colgroup>
               {
                 new Array(_get(gird, '[0].length', 1)).fill('').map((i, index) => <col key={index}
-                                                                                       style={{ width: nodeWith }} />)
+                                                                                       style={{ width: nodeWith }}/>)
               }
             </colgroup>
           );
@@ -44,13 +43,11 @@ const Colgroup = (props: any) => {
   );
 };
 const Head = (props: any) => {
-  const {
-    tree,
-    nodeName,
-    stepFunc,
-  } = props;
+  const { tree, nodeName, stepFunc } = props;
   const depthRef = useRef(0);
+
   const [team, setTeam] = useState<Array<any>>([]);
+
   const maxDeep = (arr: Array<any>) => {
     let max = 0;
     if (_isEmpty(arr)) {
@@ -64,66 +61,97 @@ const Head = (props: any) => {
     });
     return max + 1;
   };
+  const addNum = (arr: Array<any>) => {
+    arr.map(it => {
+      if (_isEmpty(it.children)) {
+        it.colSpan = 1;
+      } else {
+        addNum(it.children);
+      }
+    });
+    return arr;
+  };
   const f = (arr: Array<any>) => {
     if (_isEmpty(arr)) {
       return arr;
     }
     arr.map(it => {
-      if (!_isNumber(it.colSpan)) {
-        if (_isEmpty(it.children)) {
-          it.colSpan = 1;
-        } else {
-          if (it.children.length >= 2) { //在进入递归之前可以把增加额外的东西
-            it.children.unshift({
-              'k0501': it.k0501 + '00',
-              'k0505': '小计',
-            });
-          }
-          f(it.children); // 又没累加上来，还有children的，甩下去遍历
-          it.colSpan = it.children.reduce((all: number, item: { colSpan: 0 }) => {
-            return all + item.colSpan;
+      if (!_isNumber(it.colSpan) || it.colSpan === 0) {
+        if (!_isEmpty(it.children)) {
+          f(it.children);
+          it.colSpan = it.children.reduce((total: number, item: any) => {
+            return total + item.colSpan;
           }, 0);
+        } else {
+          it.colSpan = 1;
         }
       }
     });
     return arr;
   };
-  const fc = (arr: Array<any>) => {
-    arr.map(it => {
-      const step = stepFunc(it);
-      if (!_isEmpty(it.children)) {
-        it.rowSpan = 1;
-        it.step = step;
-        fc(it.children);
-      } else {
-        it.step = step;
-        it.rowSpan = depthRef.current - step;
+  const getLv = (it: any, arrs: any) => {
+    let num = 0;
+    const toFind = (arr: any) => {
+      for (let i = 0; i < arr.length; i++) {
+        num = 0;
+        let item = arr[i];
+        if ((!_isEmpty(item['key']) && item['key'] === it.key) || item['k0500'] === it['k0500']) {
+          return;
+        } else {
+          if (!_isEmpty(item.children)) {
+            num++;
+            toFind(item.children);
+          }
+        }
       }
-    });
-    return arr;
+    };
+    toFind(arrs);
+    return num;
   };
-  const groupBy = (array: Array<any>, name: string) => {
-    const groups: any = {};
-    array.forEach(function(o) {
-      const group = JSON.stringify(o[name]);
-      groups[group] = groups[group] || [];
-      groups[group].push(o);
-    });
-    return Object.keys(groups).map(function(group) {
-      return groups[group];
-    });
+  const fc = (arrs: Array<any>) => {
+    let arr2 = _cloneDeep(arrs);
+    const fcc = (arr: any) => {
+      arr.map((it: any) => {
+        if (!_isEmpty(it.children)) {
+          it.rowSpan = 1;
+          fcc(it.children);
+        } else {
+          it.rowSpan = depthRef.current - getLv(it, arr2) + 1;
+        }
+      });
+    };
+    fcc(arrs);
+    return arrs;
+  };
+  const getGP = (arr: any) => {
+    let num = 0;
+    let a: any = [];
+    const GP = (arrs: any) => {
+      let b: any = [];
+      arrs.map((it: any, index: number) => {
+        const { children, ...its } = it;
+        a[num] = [..._isEmpty(a[num]) ? [] : a[num], { ...its }];
+        b = [...b, ..._isEmpty(children) ? [] : children];
+      });
+      num++;
+      if (!_isEmpty(b)) {
+        GP(b);
+      }
+    };
+    GP(arr);
+    return a;
   };
 
   useEffect(() => {
     let _data = _cloneDeep(tree);
-
-    // 树最大深度
-    depthRef.current = maxDeep(_data);
+    // 树深度
+    let depth = maxDeep(_data);
+    depthRef.current = depth;
     // 加上rowSpan和colSpan
-    _data = fc(f(_data));
+    _data = f(_data);
+    _data = fc(_data);
     // 平铺树，按层级分组
-    let teamArr = groupBy(treeToList(_data, true), 'step');
-
+    let teamArr = getGP(_data);
     setTeam(teamArr);
     return () => {
       setTeam([]);

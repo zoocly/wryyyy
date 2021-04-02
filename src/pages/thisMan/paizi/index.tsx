@@ -1,37 +1,24 @@
-import React, { Fragment, useEffect } from 'react';
-import './index.less';
-class Index extends React.Component{
-  render(){
-    return <div>
-      <ul>
-        <li>react</li>
-        <li>vue</li>
-        <li>Angular</li>
-      </ul>
-    </div>
-  }
-}
+import React, { Fragment, useEffect,useState,useMemo } from 'react';
+import style from './index.less';
 
-function HOC (Component){
-  return class Advance extends Component {
-    render() {
-      const element = super.render()
-      console.log(element,'React.Children');
-      const otherProps = {
-        name:'alien'
-      }
-      const appendElement = <li>{otherProps.name}</li>
-      const newchild =  React.Children.map(element.props.children.props.children,(child,index)=>{
-        if(index === 2) return appendElement
-        return  child
-      })
-      return  React.cloneElement(element, element.props, newchild)
-    }
-  }
-}
-export  default HOC(Index)
+const index = ()=>{
+  return (
+    <Fragment>
+      <div className={style.box}>
+        <div className={style.img1}/>
+        <div className={style.img2}/>
+        <div className={style.img3}/>
+      </div>
+      <div className={style.water}>
+        <div className={style.wave1}/>
+        <div className={style.wave2}/>
+        <div className={style.wave3}/>
+      </div>
+    </Fragment>
 
-
+  )
+};
+export default index;
 
 /*
 * class组件和hook组件都可以互相嵌套HOC

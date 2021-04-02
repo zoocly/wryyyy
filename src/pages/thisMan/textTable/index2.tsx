@@ -86,47 +86,53 @@ export default function index() {
       </Group>
     )
   };
-  const ConfigTree = () =>{
-    const renderTreeNodes = (data) =>{
-      return data.map(item => {
-        if (item.children) {
-          return (
-            <TreeNode title={item.title} key={item.key} dataRef={item}>
-              {renderTreeNodes(item.children)}
-            </TreeNode>
-          );
-        }
-        return <TreeNode key={item.key} {...item} />;
-      })
-    };
-    const onTreeCheck = ({ checked = [] }={}, { checked:checkFlag ,node} = {}) =>{
-      const { key = '', parent = undefined } = node;
-      let final = [...checked];
-      if(checkFlag){
-        final = [...new Set([...final, key.substring(0,1)])]
-      }else {
-        // 如果是取消父级则子集全部取消
-        if(parent === undefined){
-          final = final.filter( it => !it.startsWith(key) );
-        }else {
-          // // 如果取消子集且子集全部没有，取消父级
-          // let arr = final.filter(it => it.startsWith(parent));
-          // if(arr.length === 1){
-          //   final = final.filter( it => it !== parent );
-          // }
-        }
+  const renderTreeNodes = (data:any) =>{
+    return data.map((item:any) => {
+      if (item.children) {
+        return (
+          // @ts-ignore
+          <TreeNode title={item.title} key={item.key} dataRef={item} >
+            {renderTreeNodes(item.children)}
+          </TreeNode>
+        );
       }
-      setSelect(final);
-    };
+      return <TreeNode key={item.key} {...item} title={item.title} dataRef={item} />;
+    })
+  };
+  const onTreeCheck = ( checkedKeys , item) =>{
+    const { checked = [] } = checkedKeys;
+    const { checked:checkFlag = false , node = {} } = item;
+    const { key = '',dataRef,children=[] } = node;
+    let final = [...checked];
+    if(checkFlag){
+      // 不是顶级节点的情况下
+      if(dataRef['parent']){
+        final.push(dataRef['parent'])
+      }
+      // for(let i = key.length; i >= 2;i = i-2){
+      //   final = [...final,key.substr(0,i)];
+      // }
+    }else {
+      // if(!_isEmpty(final) && children.length>0){
+      //   let allKey = getKey(children);
+      //   // 取消下级勾选
+      //   final= final.filter(it => !allKey.includes(it) );
+      // }
+    }
+    setSelect([...new Set(final)]);
+  };
+  const ConfigTree = () =>{
     return (
-      <Tree checkable
-            checkStrictly
-            defaultExpandAll
-            checkedKeys={select}
-            onCheck={onTreeCheck}
-      >
-        {renderTreeNodes(treeData)}
-      </Tree>
+     <div>
+       <Tree checkable
+             checkStrictly
+             defaultExpandAll
+             onCheck={onTreeCheck}
+             checkedKeys={select}
+       >
+         {renderTreeNodes(treeData)}
+       </Tree>
+     </div>
     )
   };
   useEffect(()=>{
@@ -140,7 +146,6 @@ export default function index() {
     setFakeGrid(gird);
 
   },[check,select]);
-
   return (
     <div>
       <div>当前序列:xxxxx</div>
@@ -150,7 +155,7 @@ export default function index() {
       <div className={style.main}>
         <Divider orientation="left">样表</Divider>
         <div style={{marginBottom:10}}>
-          <Input style={{width: '80%',marginRight:'2%'}} placeholder={'填写表头名称'} onChange={({target:{value}={}}={})=>{setInputVal(value)}} value={inputVal}/> <Button type="primary">保存</Button>
+          <Input style={{width: '80%',marginRight:'2%'}} placeholder={'填写表头名称'} onChange={({target:{value}={}})=>{setInputVal(value)}} value={inputVal}/> <Button type="primary">保存</Button>
         </div>
         {
           !_isEmpty(finalConfig) &&

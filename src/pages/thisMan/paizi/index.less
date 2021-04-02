@@ -1,0 +1,105 @@
+.box {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  .img1,.img2,.img3 {
+    position: absolute; left: 0; top: 0; right: 0; bottom: 0;
+    margin: auto;
+  }
+  .img1 {
+    width: 100px;
+    height: 100px;
+    border: 1px solid red;
+    animation:turn 5s linear infinite;
+  }
+  .img2 {
+    width: 150px;
+    height: 150px;
+    border: 1px solid blue;
+    animation:turn2 10s linear infinite;
+  }
+  .img3 {
+    width: 180px;
+    height: 180px;
+    border: 1px solid purple;
+    animation:turn 15s linear infinite;
+  }
+}
+@keyframes turn{
+  0%{-webkit-transform:rotate(0deg)}
+  25%{-webkit-transform:rotate(90deg);}
+  50%{-webkit-transform:rotate(180deg);}
+  75%{-webkit-transform:rotate(270deg);}
+  100%{-webkit-transform:rotate(360deg);}
+}
+@keyframes turn2{
+  0%{-webkit-transform:rotate(0deg)}
+  25%{-webkit-transform:rotate(-90deg);}
+  50%{-webkit-transform:rotate(-180deg);}
+  75%{-webkit-transform:rotate(-270deg);}
+  100%{-webkit-transform:rotate(-360deg);}
+}
+
+
+
+.water {
+  height: 200px;
+  width: 200px;
+  position: relative;
+  border: 1px solid #ccc;
+  animation: water linear infinite;
+  overflow: hidden;
+  .wave1 {
+    position: absolute;
+    top: 50%;
+    left: -35%;
+    background: #2f81f8;
+    opacity: 0.3;
+    width: 200%;
+    height: 200%;
+    border-radius: 40%;
+    animation: inherit;
+    animation-duration: 11s;
+  }
+  .wave2{
+    position: absolute;
+    top: 50%;
+    left: -45%;
+    background: #5eb2ff;
+    opacity: 0.3;
+    width: 200%;
+    height: 200%;
+    border-radius: 38%;
+    animation: inherit;
+    animation-duration: 10s;
+  }
+  .wave3{
+    position: absolute;
+    top: 50%;
+    left: -55%;
+    background: #5eb2ff;
+    opacity: 0.3;
+    width: 210%;
+    height: 210%;
+    border-radius: 45%;
+    animation: inherit;
+    animation-duration: 10s;
+  }
+  .wave2{
+    position: absolute;
+    top: 50%;
+    left: -35%;
+    background: #01D2FF;
+    opacity: 0.3;
+    width: 220%;
+    height: 220%;
+    border-radius: 33%;
+    animation: inherit;
+    animation-duration: 9s;
+  }
+}
+
+@keyframes water{
+  0%{-webkit-transform:rotate(0deg)}
+  100%{-webkit-transform:rotate(-360deg);}
+}
