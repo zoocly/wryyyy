@@ -26,18 +26,12 @@ const Colgroup = (props: any) => {
   })];
   return (
     <Fragment>
-      {
-        useMemo(() => {
-          return (
-            <colgroup>
-              {
-                new Array(_get(gird, '[0].length', 1)).fill('').map((i, index) => <col key={index}
-                                                                                       style={{ width: nodeWith }}/>)
-              }
-            </colgroup>
-          );
-        }, [num])
-      }
+      <colgroup>
+        {
+          new Array(_get(gird, '[0].length', 1)).fill('').map((i, index) => <col key={index}
+                                                                                 style={{ width: nodeWith }}/>)
+        }
+      </colgroup>
     </Fragment>
 
   );
@@ -90,23 +84,14 @@ const Head = (props: any) => {
     return arr;
   };
   const getLv = (it: any, arrs: any) => {
-    let num = 0;
-    const toFind = (arr: any) => {
-      for (let i = 0; i < arr.length; i++) {
-        num = 0;
-        let item = arr[i];
-        if ((!_isEmpty(item['key']) && item['key'] === it.key) || item['k0500'] === it['k0500']) {
-          return;
-        } else {
-          if (!_isEmpty(item.children)) {
-            num++;
-            toFind(item.children);
-          }
-        }
-      }
-    };
-    toFind(arrs);
-    return num;
+    let arr = getGP(arrs);
+    for(let i = 0; i < arr.length; i++){
+     let ar = arr[i].map((it:any)=>it.key);
+      if(ar.includes(it.key)){
+       return i;
+     }
+    }
+    return 1;
   };
   const fc = (arrs: Array<any>) => {
     let arr2 = _cloneDeep(arrs);
@@ -116,7 +101,8 @@ const Head = (props: any) => {
           it.rowSpan = 1;
           fcc(it.children);
         } else {
-          it.rowSpan = depthRef.current - getLv(it, arr2) + 1;
+          let lv = getLv(it, arr2);
+          it.rowSpan = depthRef.current - lv;
         }
       });
     };
@@ -146,6 +132,7 @@ const Head = (props: any) => {
     let _data = _cloneDeep(tree);
     // 树深度
     let depth = maxDeep(_data);
+    console.log(depth,'depth');
     depthRef.current = depth;
     // 加上rowSpan和colSpan
     _data = f(_data);

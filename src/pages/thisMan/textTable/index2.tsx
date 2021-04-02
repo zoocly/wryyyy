@@ -17,6 +17,19 @@ const checkboxConfig = [
   { title: '排名', key: '3' },
   { title: '总分', key: '4' },
 ];
+function getKey(data){
+  let res:any=[];
+  for (const item of data) {
+    const obj=item['dataRef'];
+    if(obj && obj['k0500']){
+      res.push(obj['k0500']);
+    }
+    if(item['children']){
+      res=res.concat(getKey(item['children']))
+    }
+  }
+  return res;
+}
 const treeData = [
   {
     title: '民主测评',
@@ -121,28 +134,28 @@ export default function index() {
           !_isEmpty(finalConfig) &&
           <Fragment>
             <table>
-              <Head tree={finalConfig} nodeName={'title'} stepFunc={it => it.key.length - 1}/>
+              <Head tree={finalConfig} nodeName={'title'}/>
               <Colgroup tree={finalConfig}/>
             </table>
-            <ReactDataSheet
-              style={{ width: '100%' }}
-              data={fakeGird}
-              valueRenderer={(cell: any) => cell['value']}
-              sheetRenderer={(props: any) => {
-                return (
-                  <table>
-                    <Colgroup tree={finalConfig}/>
-                    <tbody>{props.children}</tbody>
-                  </table>
-                );
-              }}
-              cellRenderer={(props: any) => {
-                const { cell = {} } = props || {};
-                return (
-                  <td style={{ height: 28 }}>{cell['value']}</td>
-                );
-              }}
-            />
+            {/*<ReactDataSheet*/}
+            {/*  style={{ width: '100%' }}*/}
+            {/*  data={fakeGird}*/}
+            {/*  valueRenderer={(cell: any) => cell['value']}*/}
+            {/*  sheetRenderer={(props: any) => {*/}
+            {/*    return (*/}
+            {/*      <table>*/}
+            {/*        <Colgroup tree={finalConfig}/>*/}
+            {/*        <tbody>{props.children}</tbody>*/}
+            {/*      </table>*/}
+            {/*    );*/}
+            {/*  }}*/}
+            {/*  cellRenderer={(props: any) => {*/}
+            {/*    const { cell = {} } = props || {};*/}
+            {/*    return (*/}
+            {/*      <td style={{ height: 28 }}>{cell['value']}</td>*/}
+            {/*    );*/}
+            {/*  }}*/}
+            {/*/>*/}
           </Fragment>
         }
       </div>
@@ -151,6 +164,7 @@ export default function index() {
 }
 const TressComp = (props: any) => {
   const { onSelect } = props;
+  const [select, setSelect] = useState<any>([]);
   const renderTreeNodes = (data: any) => {
     return data.map((item: any) => {
       if (item.children) {
@@ -164,27 +178,40 @@ const TressComp = (props: any) => {
       return <TreeNode key={item.key} {...item} title={item.title} dataRef={item}/>;
     });
   };
-  const onTreeCheck = (checkedKeys, item) => {
+  const getAllParent = (item:any, tree:any) =>{
+    let arr:any = [item.key];
+    let flatTree = treeToList(_cloneDeep(tree),true);
+    const getParents = (its:any)=>{
+      let find = flatTree.find((it:any)=>it.key === its.parent);
+      if(find){
+        arr.push(find.key);
+        if(find.parent !== '-1'){
+          getParents(find);
+        }
+      }
+    };
+    getParents(item);
+    return arr;
+  };
+  const onTreeCheck = (checkedKeys:any, item:any) => {
     const { checked = [] } = checkedKeys;
     const { checked: checkFlag = false, node = {} } = item;
     const { key = '', dataRef, children = [] } = node;
     let final = [...checked];
     if (checkFlag) {
-      // 不是顶级节点的情况下
-      if (dataRef['parent']) {
-        final.push(dataRef['parent']);
-      }
-      // for(let i = key.length; i >= 2;i = i-2){
-      //   final = [...final,key.substr(0,i)];
-      // }
+      // 获取选中点以上的所有父节点
+      final = [...final, ...getAllParent(dataRef,treeData)];
     } else {
-      // if(!_isEmpty(final) && children.length>0){
-      //   let allKey = getKey(children);
-      //   // 取消下级勾选
-      //   final= final.filter(it => !allKey.includes(it) );
-      // }
+      console.log(dataRef);
+      // 取消选中点以下的所有子节点
+      if(!_isEmpty(final) && children.length>0){
+        let allKey = treeToList(children,true).map((it:any)=>it.key);
+        final= final.filter(it => !allKey.includes(it) );
+      }
     }
-    onSelect && onSelect([...new Set(final)]);
+    final = [...new Set(final)];
+    onSelect && onSelect(final);
+    setSelect(final);
   };
   return (
     <div>
@@ -192,6 +219,7 @@ const TressComp = (props: any) => {
             checkStrictly
             defaultExpandAll
             onCheck={onTreeCheck}
+            checkedKeys={select}
       >
         {renderTreeNodes(treeData)}
       </Tree>
