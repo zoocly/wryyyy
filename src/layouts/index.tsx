@@ -25,7 +25,7 @@ class BasicLayout extends React.Component<any, any> {
           </Sider>
           <Layout className={style.content}>
             <Content style={{ margin: '16px 16px',height:'100%'}}>
-              <div style={{ padding: 24, background: '#fff'}}>
+              <div style={{ padding: 24, background: '#fff',height:'100%'}}>
                 {children}
               </div>
             </Content>
