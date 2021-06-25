@@ -21,7 +21,7 @@ const index = () => {
 
   return (
     <Fragment>
-      123
+      手写各种方法
     </Fragment>
   );
 };
