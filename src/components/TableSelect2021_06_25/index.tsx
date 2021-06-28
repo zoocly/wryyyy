@@ -70,6 +70,7 @@ const index: FC<Interface> = (props: any, ref: any) => {
   const [selectedItems, setSelectedItems] = useState<any>([]);
   const [inputValue, setInputValue] = useState<any>('');
   const [query, setQurey] = useState({});
+  const [search, setSearch] = useState({});
 
 
   const getList = (pageNum: number, pageSize = 10) => {
@@ -91,6 +92,7 @@ const index: FC<Interface> = (props: any, ref: any) => {
       pageNum,
       pageSize,
       ...payload,
+      ...search,
       ...query,
     };
     let body = {
@@ -199,9 +201,13 @@ const index: FC<Interface> = (props: any, ref: any) => {
     setSelectedRowKeys([]);
   };
   const searchCallBack=(value:any)=>{
-    console.log(value,'form');
-    onSearchCallBack && onSearchCallBack();
+    let _val = value;
+    if(onSearchCallBack){
+      _val = onSearchCallBack(value);
+    }
+    setSearch(_val);
   }
+
 
   useEffect(() => {
     if (!_isEmpty(query)) {
@@ -233,7 +239,7 @@ const index: FC<Interface> = (props: any, ref: any) => {
         setQurey({});
       }
     };
-  }, [visible]);
+  }, [visible,search]);
   return (
     <Fragment>
       {!hasOwnShowComp && <Input onClick={open} value={inputValue}/>}

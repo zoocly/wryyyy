@@ -8,29 +8,78 @@ const FormComp = (props: any) => {
     wrapperCol: { span: 14 },
   };
   const { form, onFinish, addNew, query } = props;
+  const tbRef:any = useRef();
   return (
     <div>
       <Form form={form} {...formItemLayout} onFinish={onFinish}>
         <Form.Item
           name={'name'}
           label={'姓名'}
-          rules={[{ required: true, message: '请选择专业技术资格' }]}
+          rules={[{ required: false, message: '请选择专业技术资格' }]}
         >
           <Input/>
         </Form.Item>
         <Form.Item
           name={'position'}
           label={'职务'}
-          rules={[{ required: true, message: '请输入职务' }]}
+          rules={[{ required: false, message: '请输入职务' }]}
         >
           <Input/>
         </Form.Item>
         <Form.Item
           name={'contactPhone'}
           label={'联系电话'}
-          rules={[{ required: true, message: '请输入联系电话' }]}
+          rules={[{ required: false, message: '请输入联系电话' }]}
         >
           <Input/>
+        </Form.Item>
+        <Form.Item
+          name={'zxc'}
+          label={'vvvv'}
+          rules={[{ required: false, message: '请输入联系电话' }]}
+        >
+          <TB ref={tbRef}
+              columns={[]}
+              title={'测试'}
+              action={'/api/case/list'}
+              method={'POST'}
+              rowSelectionType={'checkbox'}
+              initValue={[
+                {
+                  "id": 58,
+                  "code": "c251371e-e336-4564-9e3e-52a1a153c99a",
+                  "caseNum": "2019015",
+                  "name": "刚发的",
+                  "orgCode": "48749904-1bb7-4cb1-9e46-68ffd7d5c605",
+                  "leader": "地方",
+                  "caseMoney": "300.00",
+                  "phone": "17781051196",
+                  "remark": "32 ",
+                  "createTime": "2019-12-24 17:13:28",
+                  "orgName": "测试单位3",
+                  "currencyCode": "001"
+                },
+              ]}
+              renderTableQuery={(res: any) => {
+                const { data: { records = [], current = 1, size = 10, total = 0 } = {} } = res;
+                return { list: records, pagination: { pageSize: size, total: total, page: current } };
+              }}
+              renderSearch={({ list, query, selectedItems, selectedRowKeys,form, searchCallBack }: any) => {
+                return (
+                  <FormComp onFinish={searchCallBack} form={form}/>
+                );
+              }}
+              onSearchCallBack={(val:any)=>{
+                return val;
+              }}
+              onSubmit={({ selectedRowKeys, selectedItems, query }: any) => {
+                console.log(selectedRowKeys, selectedItems, query);
+                return 0;
+              }}
+              inputValueRender={(val:any)=>{
+                return val.name;
+              }}
+              hasOwnShowComp={false}/>
         </Form.Item>
         <div style={{ width: '100%', textAlign: 'center' }}>
           <Button type={'primary'} onClick={() => {
@@ -66,6 +115,9 @@ const index = () => {
                 return (
                   <FormComp onFinish={searchCallBack} form={form}/>
                 );
+              }}
+              onSearchCallBack={(val:any)=>{
+                return val;
               }}
               onSubmit={({ selectedRowKeys, selectedItems, query }: any) => {
                 console.log(selectedRowKeys, selectedItems, query);
