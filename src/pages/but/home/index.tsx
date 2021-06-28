@@ -48,9 +48,9 @@ export default class index extends React.Component<any,any> {
                {/*chartConfig={chartConfig}*/}
                {/*chartType={'memOverview'}*/}
         {/*/>*/}
-        <div id={'jq'}>1233</div>
+        {/*<div id={'jq'}>1233</div>*/}
         <FormComp/>
-        <FormComp2/>
+        {/*<FormComp2/>*/}
       </div>
     );
   }
